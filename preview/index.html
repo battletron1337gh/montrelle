@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Montrelle - L'élégance à la française</title>
+  <link rel="stylesheet" href="assets/noir-theme.css">
+  <style>
+    :root {
+      --color-primary: #0a0a0a;
+      --color-primary-light: #faf9f6;
+      --color-accent: #b8a88a;
+      --color-text: #0a0a0a;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    
+    /* Announcement Bar */
+    .announcement-bar {
+      background: var(--color-primary);
+      color: var(--color-primary-light);
+      text-align: center;
+      padding: 12px;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Header */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header-logo {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      letter-spacing: 3px;
+      font-weight: 400;
+    }
+    
+    .header-nav a {
+      color: var(--color-text);
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .header-icons {
+      display: flex;
+      gap: 20px;
+    }
+    
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 90vh;
+      background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      padding: 40px;
+    }
+    
+    .hero-subtitle {
+      font-size: 14px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+    
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(40px, 8vw, 72px);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 30px;
+    }
+    
+    .hero-text {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 40px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 16px 40px;
+      background: #fff;
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    
+    .btn:hover {
+      background: var(--color-accent);
+      color: #fff;
+    }
+    
+    /* Features */
+    .features {
+      padding: 80px 20px;
+      background: #f9f9f9;
+    }
+    
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 60px;
+      text-align: center;
+    }
+    
+    .feature svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+      stroke: var(--color-primary);
+    }
+    
+    .feature h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+    
+    .feature p {
+      color: #666;
+      font-size: 15px;
+    }
+    
+    /* Products */
+    .products {
+      padding: 80px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+    
+    .section-header a {
+      color: var(--color-text);
+      text-decoration: none;
+      border-bottom: 1px solid;
+      padding-bottom: 3px;
+    }
+    
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    
+    @media (max-width: 990px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    
+    .product-card {
+      text-align: center;
+    }
+    
+    .product-image {
+      aspect-ratio: 3/4;
+      background: #f0f0f0;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #999;
+    }
+    
+    .product-title {
+      font-size: 15px;
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
+    
+    .product-price {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    /* Newsletter */
+    .newsletter {
+      padding: 100px 20px;
+      background: var(--color-primary);
+      color: var(--color-primary-light);
+      text-align: center;
+    }
+    
+    .newsletter h2 {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      margin-bottom: 15px;
+      font-weight: 400;
+    }
+    
+    .newsletter p {
+      opacity: 0.8;
+      margin-bottom: 30px;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .newsletter-form input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      font-size: 16px;
+    }
+    
+    .newsletter-form button {
+      padding: 15px 30px;
+      background: var(--color-accent);
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--color-primary);
+      color: var(--color-primary-light);
+      padding: 60px 20px 30px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 2fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    @media (max-width: 768px) {
+      .footer-content { grid-template-columns: 1fr 1fr; }
+    }
+    
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+    
+    .footer p {
+      opacity: 0.7;
+      font-size: 14px;
+    }
+    
+    .footer h4 {
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    
+    .footer a {
+      color: var(--color-primary-light);
+      opacity: 0.7;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 30px auto 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement -->
+  <div class="announcement-bar">
+    Livraison gratuite chez Montrelle dès 50€
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-container">
+      <nav class="header-nav">
+        <a href="#femme">Femme</a>
+        <a href="#homme">Homme</a>
+        <a href="#nouveautes">Nouveautés</a>
+      </nav>
+      <div class="header-logo">MONTRELLE</div>
+      <div class="header-icons">
+        <span>🔍</span>
+        <span>👤</span>
+        <span>🛒</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-subtitle">Nouvelle Collection</p>
+      <h1 class="hero-title">L'élégance à la française</h1>
+      <p class="hero-text">Découvrez notre sélection de pièces intemporelles pour femmes et hommes.</p>
+      <a href="#collection" class="btn">Découvrir</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+        <h3>Livraison gratuite</h3>
+        <p>En France dès 50€ d'achat</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <h3>Retour facile</h3>
+        <p>30 jours pour changer d'avis</p>
+      </div>
+      <div class="feature">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        <h3>Paiement sécurisé</h3>
+        <p>100% sécurisé par SSL</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Femme -->
+  <section class="products" id="femme">
+    <div class="section-header">
+      <h2>Nos meilleures ventes Femme</h2>
+      <a href="#">Voir tout →</a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Doudoune Femme Slim Fit</h3>
+        <p class="product-price">89,90 €</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Top Sans Manches</h3>
+        <p class="product-price">39,90 €</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Bottes d'Hiver</h3>
+        <p class="product-price">119,90 €</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Ensemble Lounge</h3>
+        <p class="product-price">69,90 €</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Homme -->
+  <section class="products" id="homme">
+    <div class="section-header">
+      <h2>Nos meilleures ventes Homme</h2>
+      <a href="#">Voir tout →</a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Chaussures Élégantes</h3>
+        <p class="product-price">99,90 €</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Pull Sans Manches</h3>
+        <p class="product-price">59,90 €</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Veste d'Hiver</h3>
+        <p class="product-price">149,90 €</p>
+      </div>
+      <div class="product-card">
+        <div class="product-image">[Photo produit]</div>
+        <h3 class="product-title">Blouson Bomber</h3>
+        <p class="product-price">79,90 €</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <h2>Rejoignez l'univers Montrelle</h2>
+    <p>Inscrivez-vous pour recevoir nos nouveautés et offres exclusives</p>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Votre email">
+      <button type="submit">S'inscrire</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">MONTRELLE</div>
+        <p>L'élégance à la française</p>
+      </div>
+      <div>
+        <h4>Boutique</h4>
+        <a href="#">Femme</a>
+        <a href="#">Homme</a>
+        <a href="#">Nouveautés</a>
+      </div>
+      <div>
+        <h4>Aide</h4>
+        <a href="#">Contact</a>
+        <a href="#">Livraison</a>
+        <a href="#">Retours</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>contact@montrelle.fr</p>
+        <p>+33 1 23 45 67 89</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Montrelle. Tous droits réservés.</p>
+      <p>France</p>
+    </div>
+  </footer>
+</body>
+</html>
