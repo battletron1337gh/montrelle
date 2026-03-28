@@ -2,156 +2,151 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Montrelle - L'élégance à la française</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --color-primary: #0a0a0a;
-      --color-accent: #c9a87c;
-      --color-cream: #f5f0e8;
-      --font-heading: 'Playfair Display', Georgia, serif;
-      --font-body: 'Inter', sans-serif;
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--color-primary); line-height: 1.6; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      color: #0a0a0a; 
+      line-height: 1.6; 
+      overflow-x: hidden;
+      width: 100%;
+    }
     
-    /* Scroll Progress */
-    .scroll-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: var(--color-accent); z-index: 1000; transition: width 0.1s; }
-    
-    /* Header */
-    .header { 
-      position: fixed; 
-      top: 0; 
-      left: 0; 
-      right: 0; 
-      z-index: 100; 
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.4s;
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px;
+      transition: all 0.4s ease;
     }
     
     .header.scrolled {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-      padding: 15px 40px;
+      background: rgba(255,255,255,0.98);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .header-left { display: flex; gap: 30px; }
-    .header a { 
-      color: #fff; 
-      text-decoration: none; 
-      font-size: 13px; 
-      text-transform: uppercase; 
+    
+    .header a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
       letter-spacing: 2px;
       transition: color 0.3s;
+      white-space: nowrap;
     }
     
-    .header.scrolled a { color: var(--color-primary); }
-    .header a:hover { color: var(--color-accent); }
+    .header.scrolled a { color: #0a0a0a; }
+    .header a:hover { color: #c9a87c; }
     
-    .header-logo { 
-      font-family: var(--font-heading); 
-      font-size: 24px; 
+    .header-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
       letter-spacing: 4px;
       color: #fff;
-      transition: color 0.3s;
+      text-align: center;
+      flex: 1;
+      margin: 0 20px;
     }
     
-    .header.scrolled .header-logo { color: var(--color-primary); }
+    .header.scrolled .header-logo { color: #0a0a0a; }
     
-    .header-icons { display: flex; gap: 25px; color: #fff; }
-    .header.scrolled .header-icons { color: var(--color-primary); }
-    .header-icons span { cursor: pointer; font-size: 20px; transition: transform 0.3s; }
-    .header-icons span:hover { transform: scale(1.1); }
+    .header-right {
+      display: flex;
+      gap: 20px;
+      color: #fff;
+      font-size: 20px;
+    }
     
-    /* HERO SECTION */
+    .header.scrolled .header-right { color: #0a0a0a; }
+    
+    /* HERO WITH VIDEO */
     .hero {
       position: relative;
       height: 100vh;
-      min-height: 700px;
+      min-height: 600px;
       display: flex;
       align-items: center;
       overflow: hidden;
       background: #1a1a1a;
     }
     
-    /* Video/Image Background */
-    .hero-bg {
+    .video-container {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       z-index: 0;
     }
     
-    .hero-bg img {
+    .video-container video,
+    .video-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center top;
-      filter: brightness(0.7);
     }
     
-    /* Alternative: Use a gradient fallback */
-    .hero-bg-fallback {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 50%, #0d0d0d 100%);
-      z-index: -1;
-    }
-    
-    /* Animated overlay */
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(0,0,0,0.6) 0%,
-        rgba(0,0,0,0.3) 50%,
-        rgba(0,0,0,0.5) 100%
-      );
+      background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%);
       z-index: 1;
     }
     
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 800px;
-      padding: 0 60px;
+      max-width: 900px;
+      padding: 0 30px;
       color: #fff;
+      margin-top: 60px;
     }
     
     .hero-label {
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
+      color: #c9a87c;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.3s forwards;
-      color: var(--color-accent);
+      animation: fadeInUp 1s ease 0.5s forwards;
     }
     
     .hero-title {
-      font-family: var(--font-heading);
-      font-size: clamp(48px, 8vw, 80px);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 10vw, 72px);
       font-weight: 400;
-      line-height: 1.05;
-      margin-bottom: 30px;
+      line-height: 1.1;
+      margin-bottom: 25px;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.5s forwards;
+      animation: fadeInUp 1s ease 0.7s forwards;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
     
     .hero-text {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1.7;
       margin-bottom: 40px;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.7s forwards;
+      animation: fadeInUp 1s ease 0.9s forwards;
       max-width: 500px;
       font-weight: 300;
     }
@@ -164,38 +159,28 @@
     .btn-explore {
       display: inline-flex;
       align-items: center;
-      gap: 15px;
-      padding: 18px 35px;
+      gap: 12px;
+      padding: 16px 32px;
       background: #fff;
-      color: var(--color-primary);
+      color: #0a0a0a;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      border-radius: 50px;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 30px;
+      transition: all 0.3s ease;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.9s forwards;
+      animation: fadeInUp 1s ease 1.1s forwards;
       font-weight: 500;
     }
     
     .btn-explore:hover {
-      background: var(--color-accent);
+      background: #c9a87c;
       color: #fff;
       transform: translateX(5px);
     }
     
-    .btn-explore svg {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.3s;
-    }
-    
-    .btn-explore:hover svg {
-      transform: translateX(5px);
-    }
-    
-    /* Scrolling Marquee */
+    /* Marquee */
     .marquee-container {
       position: absolute;
       bottom: 0;
@@ -203,25 +188,24 @@
       right: 0;
       overflow: hidden;
       z-index: 3;
-      padding: 30px 0;
+      padding: 20px 0;
       background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     }
     
     .marquee {
       display: flex;
       white-space: nowrap;
-      animation: marquee 20s linear infinite;
+      animation: marquee 25s linear infinite;
     }
     
     .marquee-text {
-      font-family: var(--font-heading);
-      font-size: clamp(60px, 10vw, 120px);
-      font-weight: 400;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(40px, 8vw, 100px);
       color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+      -webkit-text-stroke: 1px rgba(255,255,255,0.4);
       text-transform: uppercase;
       letter-spacing: 10px;
-      padding-right: 100px;
+      padding-right: 50px;
     }
     
     @keyframes marquee {
@@ -229,108 +213,70 @@
       100% { transform: translateX(-50%); }
     }
     
-    /* Features Section */
+    /* Features */
     .features {
-      padding: 120px 60px;
-      background: var(--color-cream);
+      padding: 80px 20px;
+      background: #f5f0e8;
     }
     
     .features-grid {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 60px;
+      gap: 30px;
     }
     
     @media (max-width: 768px) {
       .features-grid { grid-template-columns: 1fr; }
-      .hero-content { padding: 0 30px; }
-      .header { padding: 15px 20px; }
+      .header-left { display: none; }
+      .hero-title { font-size: 32px; }
     }
     
     .feature {
       text-align: center;
-      padding: 40px;
-      transition: transform 0.4s;
+      padding: 30px;
+      transition: transform 0.3s;
     }
     
-    .feature:hover { transform: translateY(-10px); }
+    .feature:hover { transform: translateY(-5px); }
     
     .feature-icon {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 30px;
-      background: var(--color-accent);
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: #c9a87c;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     
-    .feature svg { width: 28px; height: 28px; stroke: #fff; stroke-width: 2; fill: none; }
-    
-    .feature h3 {
-      font-family: var(--font-heading);
-      font-size: 24px;
-      margin-bottom: 15px;
-      font-weight: 400;
-    }
-    
-    .feature p { color: #666; font-size: 15px; line-height: 1.7; }
+    .feature svg { width: 24px; height: 24px; stroke: #fff; stroke-width: 2; fill: none; }
+    .feature h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 10px; }
+    .feature p { color: #666; font-size: 14px; }
     
     /* Products */
-    .products {
-      padding: 100px 60px;
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-    
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 60px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .section-header h2 {
-      font-family: var(--font-heading);
-      font-size: 42px;
-      font-weight: 400;
-    }
-    
-    .view-all {
-      color: var(--color-primary);
-      text-decoration: none;
-      font-size: 14px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border-bottom: 1px solid;
-      padding-bottom: 3px;
-      transition: color 0.3s;
-    }
-    
-    .view-all:hover { color: var(--color-accent); }
+    .products { padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 10px; }
     
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
     
-    @media (max-width: 990px) {
-      .products-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 768px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); }
     }
     
     .product-card { cursor: pointer; }
-    
     .product-image-wrapper {
       position: relative;
       aspect-ratio: 3/4;
-      background: #f5f5f5;
-      margin-bottom: 20px;
+      background: #f0f0f0;
+      margin-bottom: 15px;
       overflow: hidden;
       border-radius: 4px;
     }
@@ -341,238 +287,154 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
       color: #999;
-      transition: transform 0.6s;
+      transition: transform 0.5s;
     }
     
     .product-card:hover .product-image { transform: scale(1.05); }
     
     .product-badge {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      background: var(--color-primary);
+      top: 10px;
+      left: 10px;
+      background: #0a0a0a;
       color: #fff;
-      padding: 8px 15px;
-      font-size: 11px;
-      letter-spacing: 2px;
+      padding: 6px 12px;
+      font-size: 10px;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
     
-    .product-info h3 {
-      font-size: 16px;
-      font-weight: 400;
-      margin-bottom: 8px;
-      transition: color 0.3s;
-    }
+    .product-info h3 { font-size: 14px; font-weight: 400; margin-bottom: 5px; }
+    .product-price { font-size: 14px; color: #666; }
     
-    .product-card:hover .product-info h3 { color: var(--color-accent); }
-    
-    .product-price {
-      font-size: 15px;
-      color: #666;
-    }
-    
-    .product-price .original {
-      text-decoration: line-through;
-      margin-left: 10px;
-      opacity: 0.5;
-    }
-    
-    /* Newsletter */
+    /* Newsletter & Footer */
     .newsletter {
-      padding: 150px 60px;
-      background: var(--color-primary);
+      padding: 80px 20px;
+      background: #0a0a0a;
       color: #fff;
       text-align: center;
     }
     
-    .newsletter h2 {
-      font-family: var(--font-heading);
-      font-size: 48px;
-      margin-bottom: 20px;
-      font-weight: 400;
-    }
-    
-    .newsletter p {
-      opacity: 0.7;
-      margin-bottom: 40px;
-      font-size: 18px;
-    }
+    .newsletter h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 15px; }
+    .newsletter p { opacity: 0.7; margin-bottom: 30px; font-size: 15px; }
     
     .newsletter-form {
       display: flex;
-      gap: 15px;
-      max-width: 600px;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
       margin: 0 auto;
+    }
+    
+    @media (min-width: 500px) {
+      .newsletter-form { flex-direction: row; }
     }
     
     .newsletter-form input {
       flex: 1;
-      padding: 20px 30px;
+      padding: 15px 20px;
       border: 1px solid rgba(255,255,255,0.2);
-      font-size: 16px;
+      font-size: 15px;
       background: transparent;
       color: #fff;
       border-radius: 4px;
     }
     
-    .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
-    
     .newsletter-form button {
-      padding: 20px 40px;
-      background: var(--color-accent);
+      padding: 15px 30px;
+      background: #c9a87c;
       color: #fff;
       border: none;
-      font-size: 14px;
+      font-size: 12px;
       letter-spacing: 2px;
       text-transform: uppercase;
       cursor: pointer;
       border-radius: 4px;
-      transition: all 0.3s;
     }
     
-    .newsletter-form button:hover {
-      background: #b8956f;
-      transform: translateY(-2px);
-    }
-    
-    /* Footer */
     .footer {
       background: #050505;
       color: #fff;
-      padding: 80px 60px 40px;
+      padding: 60px 20px 30px;
     }
     
     .footer-content {
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 2fr repeat(3, 1fr);
-      gap: 80px;
-      padding-bottom: 60px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     
-    @media (max-width: 768px) {
-      .footer-content { grid-template-columns: 1fr 1fr; gap: 40px; }
+    @media (min-width: 768px) {
+      .footer-content { grid-template-columns: 2fr repeat(3, 1fr); }
     }
     
     .footer-logo {
-      font-family: var(--font-heading);
-      font-size: 32px;
-      letter-spacing: 4px;
-      margin-bottom: 20px;
-    }
-    
-    .footer p { opacity: 0.5; font-size: 15px; line-height: 1.8; }
-    
-    .footer h4 {
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 30px;
-      font-weight: 500;
-      color: var(--color-accent);
-    }
-    
-    .footer a {
-      color: #fff;
-      opacity: 0.5;
-      text-decoration: none;
-      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      letter-spacing: 3px;
       margin-bottom: 15px;
-      font-size: 15px;
-      transition: all 0.3s;
     }
     
-    .footer a:hover { opacity: 1; color: var(--color-accent); }
+    .footer h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; color: #c9a87c; }
+    .footer a { color: #fff; opacity: 0.6; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; transition: opacity 0.3s; }
+    .footer a:hover { opacity: 1; }
     
     .footer-bottom {
-      max-width: 1400px;
-      margin: 40px auto 0;
-      display: flex;
-      justify-content: space-between;
-      font-size: 13px;
+      max-width: 1200px;
+      margin: 30px auto 0;
+      text-align: center;
+      font-size: 12px;
       opacity: 0.4;
     }
     
-    /* Back to top */
-    .back-to-top {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 60px;
-      height: 60px;
-      background: var(--color-accent);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s;
-      z-index: 99;
-      font-size: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    
-    .back-to-top.visible { opacity: 1; transform: translateY(0); }
-    .back-to-top:hover { transform: translateY(-5px); background: #b8956f; }
-    
-    /* Reveal animations */
-    .reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
-    }
-    
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-  <div class="scroll-progress" id="scrollProgress"></div>
-  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
-
   <header class="header" id="header">
-    <div class="header-left">
-      <a href="#femme">Femme</a>
-      <a href="#homme">Homme</a>
-      <a href="#">Nouveautés</a>
-    </div>
-    <div class="header-logo">MONTRELLE</div>
-    <div class="header-icons">
-      <span>🔍</span>
-      <span>👤</span>
-      <span>🛒</span>
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="#femme">Femme</a>
+        <a href="#homme">Homme</a>
+        <a href="#">Nouveautés</a>
+      </div>
+      <div class="header-logo">MONTRELLE</div>
+      <div class="header-right">
+        <span>🔍</span>
+        <span>🛒</span>
+      </div>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO WITH VIDEO -->
   <section class="hero">
-    <!-- Background Image (werkt altijd) -->
-    <div class="hero-bg">
-      <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1920&q=80" alt="Fashion">
+    <div class="video-container">
+      <!-- Video for desktop -->
+      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=80">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-modeling-in-a-blue-coat-in-the-city-4982-large.mp4" type="video/mp4">
+        <!-- Fallback image -->
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=80" alt="Fashion">
+      </video>
     </div>
     <div class="hero-overlay"></div>
     
     <div class="hero-content">
       <p class="hero-label">Nouvelle Collection</p>
       <h1 class="hero-title">Timeless<br>Fashion<br>Essence</h1>
-      <p class="hero-text">Découvrez la mode qui transcende les tendances. Élevez votre style avec des designs classiques, élégants et intemporels.</p>
+      <p class="hero-text">Découvrez la mode qui transcende les tendances. Élevez votre style avec des designs classiques et intemporels.</p>
       <a href="#femme" class="btn-explore">
-        Explorer
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
+        Explorer →
       </a>
     </div>
     
-    <!-- Scrolling Marquee -->
     <div class="marquee-container">
       <div class="marquee">
         <span class="marquee-text">Élégance</span>
@@ -599,21 +461,21 @@
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
         </div>
         <h3>Livraison gratuite</h3>
-        <p>En France métropolitaine dès 50€ d'achat. Livraison express disponible.</p>
+        <p>Dès 50€ d'achat en France</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3>Retour facile</h3>
-        <p>30 jours pour changer d'avis. Retour gratuit et remboursement rapide.</p>
+        <p>30 jours pour changer d'avis</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         </div>
         <h3>Paiement sécurisé</h3>
-        <p>Transaction 100% sécurisée. Carte bancaire et PayPal acceptés.</p>
+        <p>100% sécurisé par SSL</p>
       </div>
     </div>
   </section>
@@ -622,7 +484,6 @@
   <section class="products" id="femme">
     <div class="section-header reveal">
       <h2>Collection Femme</h2>
-      <a href="#" class="view-all">Voir tout</a>
     </div>
     <div class="products-grid">
       <div class="product-card reveal">
@@ -647,16 +508,16 @@
       <div class="product-card reveal">
         <div class="product-image-wrapper">
           <div class="product-image">[Photo]</div>
-          <span class="product-badge">-30%</span>
         </div>
         <div class="product-info">
           <h3>Blazer Classique</h3>
-          <p class="product-price">149,90 € <span class="original">215,00 €</span></p>
+          <p class="product-price">149,90 €</p>
         </div>
       </div>
       <div class="product-card reveal">
         <div class="product-image-wrapper">
           <div class="product-image">[Photo]</div>
+          <span class="product-badge">-30%</span>
         </div>
         <div class="product-info">
           <h3>Pull Cachemire</h3>
@@ -670,7 +531,6 @@
   <section class="products" id="homme">
     <div class="section-header reveal">
       <h2>Collection Homme</h2>
-      <a href="#" class="view-all">Voir tout</a>
     </div>
     <div class="products-grid">
       <div class="product-card reveal">
@@ -716,9 +576,9 @@
   <!-- Newsletter -->
   <section class="newsletter reveal">
     <h2>Rejoignez Montrelle</h2>
-    <p>Inscrivez-vous pour recevoir nos nouveautés et offres exclusives</p>
+    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
     <form class="newsletter-form">
-      <input type="email" placeholder="Votre adresse email">
+      <input type="email" placeholder="Votre email">
       <button type="submit">S'inscrire</button>
     </form>
   </section>
@@ -728,32 +588,28 @@
     <div class="footer-content">
       <div>
         <div class="footer-logo">MONTRELLE</div>
-        <p>L'élégance à la française.<br>Style intemporel depuis 2026.</p>
+        <p style="opacity: 0.6; font-size: 14px;">L'élégance à la française</p>
       </div>
       <div>
         <h4>Boutique</h4>
         <a href="#">Femme</a>
         <a href="#">Homme</a>
         <a href="#">Nouveautés</a>
-        <a href="#">Promotions</a>
       </div>
       <div>
         <h4>Aide</h4>
         <a href="#">Contact</a>
         <a href="#">Livraison</a>
         <a href="#">Retours</a>
-        <a href="#">FAQ</a>
       </div>
       <div>
         <h4>Légal</h4>
         <a href="#">CGV</a>
         <a href="#">Confidentialité</a>
-        <a href="#">Mentions légales</a>
       </div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Montrelle. Tous droits réservés.</p>
-      <p>France</p>
     </div>
   </footer>
 
@@ -761,28 +617,15 @@
     // Header scroll effect
     window.addEventListener('scroll', () => {
       const header = document.getElementById('header');
-      const scrollProgress = document.getElementById('scrollProgress');
-      const backToTop = document.getElementById('backToTop');
-      
-      // Header background
-      header.classList.toggle('scrolled', window.scrollY > 100);
-      
-      // Scroll progress
-      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      scrollProgress.style.width = scrollPercent + '%';
-      
-      // Back to top
-      backToTop.classList.toggle('visible', window.scrollY > 500);
+      header.classList.toggle('scrolled', window.scrollY > 50);
     });
     
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('active');
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1 });
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
