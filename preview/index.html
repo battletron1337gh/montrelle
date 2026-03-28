@@ -20,12 +20,10 @@
       padding: 20px;
       transition: all 0.3s;
     }
-    
     .header.scrolled {
       background: rgba(255,255,255,0.98);
       box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     }
-    
     .header-inner {
       max-width: 1400px;
       margin: 0 auto;
@@ -33,7 +31,6 @@
       justify-content: space-between;
       align-items: center;
     }
-    
     .menu-btn {
       font-size: 24px;
       color: #fff;
@@ -42,9 +39,7 @@
       cursor: pointer;
       transition: color 0.3s;
     }
-    
     .header.scrolled .menu-btn { color: #0a0a0a; }
-    
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 24px;
@@ -53,43 +48,33 @@
       text-decoration: none;
       transition: color 0.3s;
     }
-    
     .header.scrolled .logo { color: #0a0a0a; }
-    
     .header-icons {
       display: flex;
       gap: 20px;
     }
-    
     .header-icons span {
       font-size: 20px;
       color: #fff;
       cursor: pointer;
       transition: color 0.3s;
     }
-    
     .header.scrolled .header-icons span { color: #0a0a0a; }
-    
-    /* DESKTOP NAV */
     .desktop-nav { display: none; }
     @media (min-width: 768px) {
-      .desktop-nav {
-        display: flex;
-        gap: 30px;
-      }
+      .desktop-nav { display: flex; gap: 30px; }
       .desktop-nav a {
         color: #fff;
         text-decoration: none;
         font-size: 12px;
         text-transform: uppercase;
         letter-spacing: 2px;
-        transition: color 0.3s;
       }
       .header.scrolled .desktop-nav a { color: #0a0a0a; }
       .menu-btn { display: none; }
     }
     
-    /* HERO WITH VIDEO */
+    /* HERO WITH MULTIPLE VIDEO FALLBACKS */
     .hero {
       position: relative;
       height: 100vh;
@@ -100,7 +85,6 @@
       overflow: hidden;
     }
     
-    /* VIDEO BACKGROUND */
     .video-bg {
       position: absolute;
       top: 0;
@@ -123,27 +107,20 @@
       object-fit: cover;
     }
     
-    /* Fallback for mobile - animated images */
+    /* Animated fallback */
     .video-fallback {
       position: absolute;
       inset: 0;
+      background-size: cover;
+      background-position: center;
+      animation: kenburns 20s ease-in-out infinite;
       display: none;
     }
     
-    /* Show fallback on touch devices where video might not work */
-    @media (hover: none) and (pointer: coarse) {
-      .video-bg video { display: none; }
-      .video-fallback { 
-        display: block;
-        background: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80') center/cover;
-        animation: kenburns 15s ease-in-out infinite;
-      }
-    }
-    
     @keyframes kenburns {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.1) translate(-1%, -1%); }
+      100% { transform: scale(1) translate(0, 0); }
     }
     
     .hero-overlay {
@@ -218,14 +195,8 @@
       font-weight: 500;
       border: none;
     }
+    .btn:hover { background: #c9a87c; color: #fff; transform: translateX(5px); }
     
-    .btn:hover {
-      background: #c9a87c;
-      color: #fff;
-      transform: translateX(5px);
-    }
-    
-    /* MARQUEE */
     .marquee-container {
       position: absolute;
       bottom: 0;
@@ -236,13 +207,11 @@
       padding: 15px 0;
       background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     }
-    
     .marquee {
       display: flex;
       white-space: nowrap;
       animation: marquee 20s linear infinite;
     }
-    
     .marquee-text {
       font-family: 'Playfair Display', serif;
       font-size: clamp(35px, 7vw, 80px);
@@ -252,7 +221,6 @@
       letter-spacing: 10px;
       padding-right: 40px;
     }
-    
     @keyframes marquee {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
@@ -270,7 +238,6 @@
     @media (min-width: 768px) {
       .features-grid { grid-template-columns: repeat(3, 1fr); }
     }
-    
     .feature {
       text-align: center;
       padding: 30px 20px;
@@ -303,7 +270,6 @@
     @media (min-width: 768px) {
       .products-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
     }
-    
     .product-card { cursor: pointer; }
     .product-image-wrapper {
       position: relative;
@@ -411,11 +377,12 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO WITH MULTIPLE VIDEO SOURCES -->
   <section class="hero">
-    <div class="video-bg">
-      <!-- VIDEO for desktop -->
+    <div class="video-bg" id="videoContainer">
+      <!-- Video 1: Coverr -->
       <video 
+        id="heroVideo"
         autoplay 
         muted 
         loop 
@@ -423,9 +390,12 @@
         preload="auto"
         poster="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80">
         <source src="https://cdn.coverr.co/videos/coverr-woman-in-a-fashionable-coat-3395/1080p.mp4" type="video/mp4">
+        <source src="https://videos.pexels.com/video-files/5886041/5886041-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
       </video>
-      <!-- ANIMATED IMAGE fallback for mobile -->
-      <div class="video-fallback"></div>
+      
+      <!-- Fallback if all videos fail -->
+      <div class="video-fallback" id="videoFallback" style="display: none; background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=80');"></div>
     </div>
     <div class="hero-overlay"></div>
     
@@ -480,10 +450,7 @@
     <div class="section-header reveal"><h2>Collection Femme</h2></div>
     <div class="products-grid">
       <div class="product-card reveal">
-        <div class="product-image-wrapper">
-          <div class="product-image">[Photo]</div>
-          <span class="product-badge">Nouveau</span>
-        </div>
+        <div class="product-image-wrapper"><div class="product-image">[Photo]</div><span class="product-badge">Nouveau</span></div>
         <div class="product-info"><h3>Manteau Élégant</h3><p class="product-price">189,90 €</p></div>
       </div>
       <div class="product-card reveal">
@@ -545,10 +512,28 @@
   </footer>
 
   <script>
+    // Header scroll effect
     window.addEventListener('scroll', () => {
       document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
     
+    // Check if video plays, if not show fallback
+    const video = document.getElementById('heroVideo');
+    const fallback = document.getElementById('videoFallback');
+    
+    video.addEventListener('error', () => {
+      video.style.display = 'none';
+      fallback.style.display = 'block';
+    });
+    
+    // Try to play video (some browsers need this)
+    video.play().catch(() => {
+      // If autoplay blocked, show fallback
+      video.style.display = 'none';
+      fallback.style.display = 'block';
+    });
+    
+    // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('active'));
     }, { threshold: 0.1 });
