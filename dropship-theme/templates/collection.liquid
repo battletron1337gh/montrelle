@@ -1,0 +1,122 @@
+<!-- Collection Template -->
+
+<div class="collection-template">
+  <div class="page-width">
+    <header class="collection-header">
+      <h1 class="collection-header__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection-header__description">{{ collection.description }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="collection-toolbar">
+      <p class="collection-toolbar__count">{{ collection.products_count }} produits</p>
+      
+      <div class="collection-toolbar__sort">
+        <label for="SortBy">Trier par</label>
+        <select name="sort_by" id="SortBy">
+          <option value="manual">En vedette</option>
+          <option value="price-ascending">Prix croissant</option>
+          <option value="price-descending">Prix décroissant</option>
+          <option value="title-ascending">Nom A-Z</option>
+          <option value="title-descending">Nom Z-A</option>
+          <option value="created-descending">Nouveautés</option>
+          <option value="best-selling">Meilleures ventes</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="collection-grid">
+      {%- for product in collection.products -%}
+        <div class="product-card">
+          <a href="{{ product.url }}" class="product-card__link">
+            <img src="{{ product.featured_image | image_url: width: 600 }}" 
+                 alt="{{ product.title }}"
+                 class="product-card__image"
+                 loading="lazy">
+          </a>
+          <div class="product-card__info">
+            <h3 class="product-card__title">
+              <a href="{{ product.url }}">{{ product.title }}</a>
+            </h3>
+            <p class="product-card__price">{{ product.price | money }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <div class="pagination">
+        {{ paginate | default_pagination }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .collection-template {
+    padding: 4rem 0;
+  }
+  
+  .page-width {
+    max-width: 140rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .collection-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  
+  .collection-header__title {
+    font-family: var(--font-heading-family);
+    font-size: 4rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+  
+  .collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
+  }
+  
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .collection-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media screen and (min-width: 990px) {
+    .collection-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Collection Template",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24
+    }
+  ]
+}
+{% endschema %}

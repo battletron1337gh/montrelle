@@ -1,0 +1,219 @@
+{% comment %}
+  Header Section
+  Navigation and logo
+{% endcomment %}
+
+<header class="header" role="banner">
+  <div class="header__container">
+    {%- if section.settings.menu != blank -%}
+      <nav class="header__nav header__nav--left" role="navigation">
+        <button type="button" class="header__menu-toggle js-menu-toggle" aria-label="{{ 'general.navigation.toggle' | t }}">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="header__menu">
+          {%- for link in section.settings.menu.links -%}
+            <li class="header__menu-item">
+              <a href="{{ link.url }}" class="header__menu-link{% if link.active %} header__menu-link--active{% endif %}">
+                {{ link.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="header__logo">
+      <a href="{{ routes.root_url }}" class="header__logo-link">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 300 }}" 
+               alt="{{ shop.name }}" 
+               class="header__logo-image"
+               width="{{ settings.logo_width }}"
+               height="auto"
+               loading="eager">
+        {%- else -%}
+          <span class="header__logo-text">NOIR & BLANC</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <div class="header__icons">
+      {%- if settings.enable_search -%}
+        <button type="button" class="header__icon js-search-toggle" aria-label="{{ 'general.search.search' | t }}">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      {%- endif -%}
+
+      {%- if settings.enable_dark_mode_toggle -%}
+        <button type="button" class="header__icon js-dark-mode-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M10 1v2M10 17v2M1 10h2M17 10h2M3.34 3.34l1.42 1.42M15.24 15.24l1.42 1.42M3.34 16.66l1.42-1.42M15.24 4.76l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+            <path d="M17.5 11.5c0 3.5-2.5 6.5-6 7a7.5 7.5 0 1 1 6-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      {%- endif -%}
+
+      <a href="{{ routes.account_url }}" class="header__icon" aria-label="{{ 'customer.account.title' | t }}">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 19v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+
+      <button type="button" class="header__icon js-cart-toggle" aria-label="{{ 'cart.general.title' | t }}">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 1L1 5v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5l-3-4H4zM1 5h18M14 9a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="header__cart-count js-cart-count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--color-background);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 140rem;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+  }
+  
+  .header__nav--left {
+    flex: 1;
+  }
+  
+  .header__menu {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2.5rem;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .header__menu {
+      display: flex;
+    }
+    .header__menu-toggle {
+      display: none;
+    }
+  }
+  
+  .header__menu-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  
+  .header__menu-link:hover,
+  .header__menu-link--active {
+    opacity: 0.6;
+  }
+  
+  .header__logo {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .header__logo-link {
+    display: inline-block;
+  }
+  
+  .header__logo-image {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  .header__logo-text {
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    letter-spacing: 0.15em;
+    color: var(--color-text);
+  }
+  
+  .header__icons {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+  }
+  
+  .header__icon {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text);
+    position: relative;
+    transition: opacity 0.2s;
+  }
+  
+  .header__icon:hover {
+    opacity: 0.6;
+  }
+  
+  .header__cart-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--color-primary);
+    color: var(--color-primary-light);
+    font-size: 1rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header__menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+  }
+  
+  .header__menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-text);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Connexion administrateur",
+      "login_password_button": "Entrer avec un mot de passe",
+      "login_form_password_label": "Mot de passe",
+      "login_form_password_placeholder": "Votre mot de passe"
+    },
+    "breadcrumbs": {
+      "home": "Accueil",
+      "products": "Produits"
+    },
+    "search": {
+      "search": "Rechercher",
+      "no_results": "Aucun résultat trouvé"
+    },
+    "navigation": {
+      "toggle": "Menu",
+      "help": "Aide"
+    },
+    "accessibility": {
+      "skip_to_text": "Passer au contenu",
+      "close": "Fermer",
+      "refresh_page": "Choisir une sélection entraîne une actualisation complète de la page"
+    },
+    "meta": {
+      "tags": "Mots-clés",
+      "page": "Page {{ page }}"
+    }
+  },
+  "sections": {
+    "header": {
+      "announcement": "Annonce"
+    },
+    "cart": {
+      "title": "Panier",
+      "remove": "Retirer",
+      "subtotal": "Sous-total",
+      "checkout": "Passer la commande",
+      "empty": "Votre panier est vide",
+      "continue_shopping": "Continuer les achats"
+    },
+    "featured_collection": {
+      "view_all": "Voir tout",
+      "sale": "Promo"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Ajouter au panier",
+      "sold_out": "Épuisé",
+      "unavailable": "Indisponible",
+      "quantity": "Quantité",
+      "price": "Prix",
+      "description": "Description"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Mon compte",
+      "details": "Détails du compte"
+    },
+    "login": {
+      "title": "Connexion",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "Se connecter"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "submit": "Créer"
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{% comment %}
+  Hero Section
+  Main banner on homepage
+{% endcomment %}
+
+<section class="hero" data-section-id="{{ section.id }}">
+  <div class="hero__container">
+    {%- if section.settings.image != blank -%}
+      <div class="hero__image-wrapper">
+        <img src="{{ section.settings.image | image_url: width: 2000 }}"
+             alt="{{ section.settings.heading | escape }}"
+             class="hero__image"
+             loading="eager"
+             width="{{ section.settings.image.width }}"
+             height="{{ section.settings.image.height }}">
+      </div>
+    {%- endif -%}
+    
+    <div class="hero__content">
+      {%- if section.settings.subheading != blank -%}
+        <p class="hero__subheading">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+      
+      {%- if section.settings.heading != blank -%}
+        <h1 class="hero__heading">{{ section.settings.heading | escape }}</h1>
+      {%- endif -%}
+      
+      {%- if section.settings.text != blank -%}
+        <div class="hero__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+      
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="hero__button button">
+          {{ section.settings.button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .hero__image-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero__image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+  }
+  
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+    max-width: 80rem;
+  }
+  
+  .hero__subheading {
+    font-size: 1.4rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+  
+  .hero__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.6rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0 0 2rem;
+  }
+  
+  .hero__text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    max-width: 60rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .hero__button {
+    display: inline-block;
+    background: #fff;
+    color: #0a0a0a;
+    padding: 1.6rem 4rem;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .hero__button:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Nouvelle Collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Élégance intemporelle pour femmes & hommes"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Découvrez notre sélection de pièces intemporelles, conçues pour durer et pour séduire.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Découvrir la collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections/all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

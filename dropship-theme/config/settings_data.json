@@ -1,0 +1,26 @@
+{
+  "current": {
+    "color_primary": "#0a0a0a",
+    "color_primary_light": "#faf9f6",
+    "color_accent": "#b8a88a",
+    "color_text": "#0a0a0a",
+    "color_text_light": "#faf9f6",
+    "color_background": "#ffffff",
+    "color_background_dark": "#0a0a0a",
+    "font_heading": "playfair_display_n4",
+    "font_body": "inter_n4",
+    "logo": "noir-blanc-logo.svg",
+    "logo_width": 150,
+    "favicon": "favicon.png",
+    "cart_type": "drawer",
+    "enable_dark_mode": true,
+    "show_social_icons": true,
+    "social_instagram": "https://instagram.com/noir.et.blanc",
+    "social_facebook": "https://facebook.com/noiretblanc",
+    "social_tiktok": "https://tiktok.com/@noiretblanc",
+    "social_pinterest": "https://pinterest.com/noiretblanc",
+    "currency_code": "EUR",
+    "free_shipping_threshold": 50,
+    "show_free_shipping_bar": true
+  }
+}
