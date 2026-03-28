@@ -2,29 +2,29 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Montrelle - L'élégance à la française</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Montrelle</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    body { 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { 
       font-family: 'Inter', sans-serif; 
       color: #0a0a0a; 
-      line-height: 1.6; 
+      background: #fff;
       overflow-x: hidden;
       width: 100%;
     }
     
-    /* HEADER */
+    /* MOBILE-FIRST HEADER */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       z-index: 1000;
-      padding: 20px;
-      transition: all 0.4s ease;
+      background: transparent;
+      transition: all 0.3s;
+      padding: 15px 20px;
     }
     
     .header.scrolled {
@@ -32,135 +32,174 @@
       box-shadow: 0 2px 20px rgba(0,0,0,0.1);
     }
     
+    .header.scrolled .logo { color: #0a0a0a; }
+    .header.scrolled .menu-btn { color: #0a0a0a; }
+    .header.scrolled .icon { color: #0a0a0a; }
+    
     .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     
-    .header-left { display: flex; gap: 30px; }
-    
-    .header a {
+    .menu-btn {
+      font-size: 24px;
       color: #fff;
-      text-decoration: none;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      transition: color 0.3s;
-      white-space: nowrap;
+      cursor: pointer;
+      background: none;
+      border: none;
+      width: 40px;
     }
     
-    .header.scrolled a { color: #0a0a0a; }
-    .header a:hover { color: #c9a87c; }
-    
-    .header-logo {
+    .logo {
       font-family: 'Playfair Display', serif;
       font-size: 22px;
       letter-spacing: 4px;
       color: #fff;
       text-align: center;
       flex: 1;
-      margin: 0 20px;
+      text-decoration: none;
     }
-    
-    .header.scrolled .header-logo { color: #0a0a0a; }
     
     .header-right {
       display: flex;
       gap: 20px;
-      color: #fff;
-      font-size: 20px;
+      align-items: center;
+      width: 40px;
+      justify-content: flex-end;
     }
     
-    .header.scrolled .header-right { color: #0a0a0a; }
+    .icon {
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+    }
     
-    /* HERO WITH VIDEO */
+    /* Desktop nav */
+    .desktop-nav {
+      display: none;
+    }
+    
+    @media (min-width: 768px) {
+      .menu-btn { display: none; }
+      .desktop-nav {
+        display: flex;
+        gap: 30px;
+        width: 40%;
+      }
+      .desktop-nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: color 0.3s;
+      }
+      .header.scrolled .desktop-nav a { color: #0a0a0a; }
+      .logo { 
+        width: 20%; 
+        font-size: 24px;
+      }
+      .header-right { width: 40%; }
+    }
+    
+    /* HERO */
     .hero {
       position: relative;
       height: 100vh;
       min-height: 600px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
+      padding-bottom: 100px;
       overflow: hidden;
-      background: #1a1a1a;
     }
     
-    .video-container {
+    /* ANIMATED BACKGROUND - CSS ONLY */
+    .hero-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       z-index: 0;
     }
     
-    .video-container video,
-    .video-container img {
+    .hero-bg img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      animation: kenburns 20s ease-in-out infinite;
+    }
+    
+    @keyframes kenburns {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.1) translate(-2%, -2%); }
+      100% { transform: scale(1) translate(0, 0); }
     }
     
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.6) 100%);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.2) 40%,
+        rgba(0,0,0,0.7) 100%
+      );
       z-index: 1;
     }
     
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 900px;
-      padding: 0 30px;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 25px;
       color: #fff;
-      margin-top: 60px;
     }
     
     .hero-label {
       font-size: 11px;
       letter-spacing: 4px;
       text-transform: uppercase;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       color: #c9a87c;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.5s forwards;
+      animation: fadeInUp 1s ease 0.3s forwards;
     }
     
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(36px, 10vw, 72px);
+      font-size: clamp(40px, 12vw, 80px);
       font-weight: 400;
-      line-height: 1.1;
-      margin-bottom: 25px;
+      line-height: 1;
+      margin-bottom: 20px;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.7s forwards;
+      animation: fadeInUp 1s ease 0.5s forwards;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
     }
     
     .hero-text {
-      font-size: 16px;
-      line-height: 1.7;
-      margin-bottom: 40px;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 30px;
       opacity: 0;
-      animation: fadeInUp 1s ease 0.9s forwards;
-      max-width: 500px;
+      animation: fadeInUp 1s ease 0.7s forwards;
+      max-width: 450px;
       font-weight: 300;
     }
     
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
-    .btn-explore {
+    .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 16px 32px;
+      gap: 10px;
+      padding: 16px 30px;
       background: #fff;
       color: #0a0a0a;
       text-decoration: none;
@@ -168,13 +207,15 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       border-radius: 30px;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
       opacity: 0;
-      animation: fadeInUp 1s ease 1.1s forwards;
+      animation: fadeInUp 1s ease 0.9s forwards;
       font-weight: 500;
+      border: none;
+      cursor: pointer;
     }
     
-    .btn-explore:hover {
+    .btn-primary:hover {
       background: #c9a87c;
       color: #fff;
       transform: translateX(5px);
@@ -188,24 +229,24 @@
       right: 0;
       overflow: hidden;
       z-index: 3;
-      padding: 20px 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 15px 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
     }
     
     .marquee {
       display: flex;
       white-space: nowrap;
-      animation: marquee 25s linear infinite;
+      animation: marquee 20s linear infinite;
     }
     
     .marquee-text {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(40px, 8vw, 100px);
+      font-size: clamp(30px, 6vw, 80px);
       color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+      -webkit-text-stroke: 1px rgba(255,255,255,0.3);
       text-transform: uppercase;
-      letter-spacing: 10px;
-      padding-right: 50px;
+      letter-spacing: 8px;
+      padding-right: 40px;
     }
     
     @keyframes marquee {
@@ -215,7 +256,7 @@
     
     /* Features */
     .features {
-      padding: 80px 20px;
+      padding: 60px 20px;
       background: #f5f0e8;
     }
     
@@ -223,27 +264,25 @@
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr;
       gap: 30px;
     }
     
-    @media (max-width: 768px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .header-left { display: none; }
-      .hero-title { font-size: 32px; }
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
     }
     
     .feature {
       text-align: center;
-      padding: 30px;
-      transition: transform 0.3s;
+      padding: 30px 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
     
-    .feature:hover { transform: translateY(-5px); }
-    
     .feature-icon {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       margin: 0 auto 20px;
       background: #c9a87c;
       border-radius: 50%;
@@ -252,23 +291,24 @@
       justify-content: center;
     }
     
-    .feature svg { width: 24px; height: 24px; stroke: #fff; stroke-width: 2; fill: none; }
-    .feature h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 10px; }
+    .feature svg { width: 22px; height: 22px; stroke: #fff; stroke-width: 2; fill: none; }
+    .feature h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; }
     .feature p { color: #666; font-size: 14px; }
     
     /* Products */
     .products { padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
     .section-header { text-align: center; margin-bottom: 40px; }
-    .section-header h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 10px; }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: 28px; }
     
     .products-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 15px;
     }
     
     @media (min-width: 768px) {
-      .products-grid { grid-template-columns: repeat(4, 1fr); }
+      .products-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+      .section-header h2 { font-size: 36px; }
     }
     
     .product-card { cursor: pointer; }
@@ -276,7 +316,7 @@
       position: relative;
       aspect-ratio: 3/4;
       background: #f0f0f0;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       overflow: hidden;
       border-radius: 4px;
     }
@@ -287,9 +327,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
+      font-size: 12px;
       color: #999;
-      transition: transform 0.5s;
+      transition: transform 0.5s, filter 0.3s;
     }
     
     .product-card:hover .product-image { transform: scale(1.05); }
@@ -300,16 +340,16 @@
       left: 10px;
       background: #0a0a0a;
       color: #fff;
-      padding: 6px 12px;
-      font-size: 10px;
+      padding: 5px 10px;
+      font-size: 9px;
       letter-spacing: 1px;
       text-transform: uppercase;
     }
     
-    .product-info h3 { font-size: 14px; font-weight: 400; margin-bottom: 5px; }
-    .product-price { font-size: 14px; color: #666; }
+    .product-info h3 { font-size: 13px; font-weight: 400; margin-bottom: 4px; }
+    .product-price { font-size: 13px; color: #666; }
     
-    /* Newsletter & Footer */
+    /* Newsletter */
     .newsletter {
       padding: 80px 20px;
       background: #0a0a0a;
@@ -317,8 +357,8 @@
       text-align: center;
     }
     
-    .newsletter h2 { font-family: 'Playfair Display', serif; font-size: 32px; margin-bottom: 15px; }
-    .newsletter p { opacity: 0.7; margin-bottom: 30px; font-size: 15px; }
+    .newsletter h2 { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 15px; }
+    .newsletter p { opacity: 0.7; margin-bottom: 25px; font-size: 14px; }
     
     .newsletter-form {
       display: flex;
@@ -336,7 +376,7 @@
       flex: 1;
       padding: 15px 20px;
       border: 1px solid rgba(255,255,255,0.2);
-      font-size: 15px;
+      font-size: 14px;
       background: transparent;
       color: #fff;
       border-radius: 4px;
@@ -354,10 +394,11 @@
       border-radius: 4px;
     }
     
+    /* Footer */
     .footer {
       background: #050505;
       color: #fff;
-      padding: 60px 20px 30px;
+      padding: 50px 20px 30px;
     }
     
     .footer-content {
@@ -365,8 +406,8 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      padding-bottom: 40px;
+      gap: 30px;
+      padding-bottom: 30px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     
@@ -376,13 +417,13 @@
     
     .footer-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 24px;
+      font-size: 22px;
       letter-spacing: 3px;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
     
-    .footer h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; color: #c9a87c; }
-    .footer a { color: #fff; opacity: 0.6; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; transition: opacity 0.3s; }
+    .footer h4 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; color: #c9a87c; }
+    .footer a { color: #fff; opacity: 0.6; text-decoration: none; display: block; margin-bottom: 8px; font-size: 13px; transition: opacity 0.3s; }
     .footer a:hover { opacity: 1; }
     
     .footer-bottom {
@@ -401,28 +442,28 @@
 <body>
   <header class="header" id="header">
     <div class="header-inner">
-      <div class="header-left">
+      <button class="menu-btn">☰</button>
+      
+      <nav class="desktop-nav">
         <a href="#femme">Femme</a>
         <a href="#homme">Homme</a>
         <a href="#">Nouveautés</a>
-      </div>
-      <div class="header-logo">MONTRELLE</div>
+      </nav>
+      
+      <a href="#" class="logo">MONTRELLE</a>
+      
       <div class="header-right">
-        <span>🔍</span>
-        <span>🛒</span>
+        <span class="icon">🔍</span>
+        <span class="icon">🛒</span>
       </div>
     </div>
   </header>
 
-  <!-- HERO WITH VIDEO -->
+  <!-- HERO - CSS ANIMATED BACKGROUND -->
   <section class="hero">
-    <div class="video-container">
-      <!-- Video for desktop -->
-      <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=80">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-modeling-in-a-blue-coat-in-the-city-4982-large.mp4" type="video/mp4">
-        <!-- Fallback image -->
-        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1920&q=80" alt="Fashion">
-      </video>
+    <!-- Animated Image Background (werkt altijd!) -->
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=80" alt="Fashion">
     </div>
     <div class="hero-overlay"></div>
     
@@ -430,9 +471,7 @@
       <p class="hero-label">Nouvelle Collection</p>
       <h1 class="hero-title">Timeless<br>Fashion<br>Essence</h1>
       <p class="hero-text">Découvrez la mode qui transcende les tendances. Élevez votre style avec des designs classiques et intemporels.</p>
-      <a href="#femme" class="btn-explore">
-        Explorer →
-      </a>
+      <a href="#femme" class="btn-primary">Explorer →</a>
     </div>
     
     <div class="marquee-container">
@@ -461,26 +500,26 @@
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
         </div>
         <h3>Livraison gratuite</h3>
-        <p>Dès 50€ d'achat en France</p>
+        <p>Dès 50€ d'achat</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3>Retour facile</h3>
-        <p>30 jours pour changer d'avis</p>
+        <p>30 jours garantis</p>
       </div>
       <div class="feature reveal">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
         </div>
         <h3>Paiement sécurisé</h3>
-        <p>100% sécurisé par SSL</p>
+        <p>100% sécurisé</p>
       </div>
     </div>
   </section>
 
-  <!-- Products Femme -->
+  <!-- Products -->
   <section class="products" id="femme">
     <div class="section-header reveal">
       <h2>Collection Femme</h2>
@@ -527,7 +566,6 @@
     </div>
   </section>
 
-  <!-- Products Homme -->
   <section class="products" id="homme">
     <div class="section-header reveal">
       <h2>Collection Homme</h2>
@@ -576,7 +614,7 @@
   <!-- Newsletter -->
   <section class="newsletter reveal">
     <h2>Rejoignez Montrelle</h2>
-    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+    <p>Recevez nos offres exclusives</p>
     <form class="newsletter-form">
       <input type="email" placeholder="Votre email">
       <button type="submit">S'inscrire</button>
@@ -588,7 +626,7 @@
     <div class="footer-content">
       <div>
         <div class="footer-logo">MONTRELLE</div>
-        <p style="opacity: 0.6; font-size: 14px;">L'élégance à la française</p>
+        <p style="opacity: 0.5; font-size: 13px;">L'élégance à la française</p>
       </div>
       <div>
         <h4>Boutique</h4>
@@ -616,15 +654,12 @@
   <script>
     // Header scroll effect
     window.addEventListener('scroll', () => {
-      const header = document.getElementById('header');
-      header.classList.toggle('scrolled', window.scrollY > 50);
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
     });
     
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('active');
-      });
+      entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('active'));
     }, { threshold: 0.1 });
     
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
