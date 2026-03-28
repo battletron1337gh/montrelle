@@ -1,14 +1,14 @@
-# 📦 Noir & Blanc - Shopify Theme
+# 📦 Montrelle - Shopify Theme
 
-Complete Shopify 2.0 theme voor Noir & Blanc fashion dropshipping store.
+Complete Shopify 2.0 theme voor Montrelle (montrelle.fr) fashion dropshipping store.  
 Gebaseerd op JulesValmont.fr maar moderner en geoptimaliseerd.
 
 ## 🚀 Quick Start
 
 ### 1. Theme Upload
 ```bash
-# Zip de shopify-theme folder
-cd shopify-theme && zip -r ../noir-blanc-theme.zip .
+# Zip de dropship-theme folder
+cd dropship-theme && zip -r ../montrelle-theme.zip .
 
 # Upload in Shopify Admin:
 # Online Store → Themes → Upload theme
@@ -29,7 +29,7 @@ cd shopify-theme && zip -r ../noir-blanc-theme.zip .
 ## 📁 Theme Structuur
 
 ```
-shopify-theme/
+dropship-theme/
 ├── assets/           # CSS, JS, fonts
 ├── config/           # Theme settings schema
 ├── layout/
@@ -124,17 +124,17 @@ Tags: femme|homme|unisexe + seizoen
 
 ## 🌍 Domein Setup
 
-1. Koop **noir-blanc.fr** (of .com)
+1. Koop **montrelle.fr** 
 2. Configureer in Shopify: Settings → Domains
 3. Stel als primary domain in
 4. Configureer SSL (automatisch)
 
 ## 📱 Social Media Handles
 
-- Instagram: @noir.et.blanc.officiel
-- Facebook: /noiretblanc
-- TikTok: @noiretblanc
-- Pinterest: /noiretblanc
+- Instagram: @montrelle.fr
+- Facebook: /montrelle.fr
+- TikTok: @montrelle.fr
+- Pinterest: /montrelle
 
 ## 📝 TODO voor Launch
 
@@ -169,4 +169,4 @@ Tags: femme|homme|unisexe + seizoen
 
 **Gemaakt:** 28 maart 2026  
 **Versie:** 1.0  
-**Markt:** Frankrijk 🇫🇷
+**Domein:** Montrelle.fr 🇫🇷

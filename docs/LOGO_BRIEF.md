@@ -1,33 +1,23 @@
 # Brief voor Logo Designer
 
-## Project: Noir & Blanc
+## Project: Montrelle
+**Domein:** Montrelle.fr  
+**Markt:** Frankrijk (mode e-commerce)  
+**Stijl:** Elegant, tijdloos, modern Frans
 
 ---
 
 ## Over het Merk
 
-**Naam:** Noir & Blanc (kort: Noir)  
-**Markt:** Frankrijk (mode e-commerce)  
-**Product:** Tijdloze kleding & accessoires voor mannen en vrouwen  
-**Positionering:** Premium basics, betaalbare luxe
+**Naam:** Montrelle  
+**Uitspraak:** Mon-trell  
+**Betekenis:** Evocatie van bergen (aspiratie) + echt/authentiek
 
----
-
-## Wat We Nodig Hebben
-
-### 1. Primair Logo
-- Volledige naam: "Noir & Blanc"
-- Voor website header, verpakking, marketing
-- Zowel horizontaal als verticaal formaat
-
-### 2. Secundair Logo / Icon
-- Alleen "Noir" 
-- Voor sociale media profielfoto's, favicon, app icon
-- Klein formaat herkenbaar
-
-### 3. Monogram (optioneel)
-- "NB" of "N" symbool
-- Voor labels, stickers, subtiele branding
+**Positionering:**
+- Premium basics voor professionals
+- Tijdloze Franse stijl
+- Betaalbare luxe
+- Doelgroep: 25-45 jaar, stedelijk, werkend
 
 ---
 
@@ -38,73 +28,103 @@
 - Tijdloos
 - Frans
 - Modern-minimalistisch
-- Luxe (maar niet arrogant)
+- Vertrouwd & Warm
 
 ### Inspiratie Merken
-- **The Row** — Minimalisme, kwaliteit
-- **A.P.C.** — Frans, understated
-- **Everlane** — Transparant, clean
-- **COS** — Modern, architecturaal
+- **Sézane** — Warm, persoonlijk
 - **Sandro** — Frans chic
+- **Everlane** — Transparant, clean
+- **COS** — Minimalistisch
+- **The Row** — Luxe, understatement
 
 ### Kleuren
-- **Primair:** Diep zwart (#0A0A0A)
-- **Secundair:** Warm wit (#FAF9F6)
-- **Accent:** Oud goud (#B8A88A)
+- **Primair:** #0A0A0A (diep zwart)
+- **Accent:** #B8A88A (oud goud)
+- **Background:** #FAF9F6 (warm wit)
 
 ### Fonts (voor inspiratie)
 - Didot
 - Bodoni
+- Canela
 - Cormorant Garamond
-- Playfair Display
+
+---
+
+## Logo Opties
+
+### Optie 1: Woordmerk (Aanbevolen)
+"MONTRELLE" in klassiek serif
+- All caps of title case
+- Tijdloos, elegant
+- Goed leesbaar
+
+### Optie 2: Monogram
+"M" als symbool
+- Eventueel met subtiele berg-silhouet
+- Herkenbaar als favicon
+- Modern & klassiek combineert
+
+### Optie 3: Hybride
+Woordmerk + subtiel icoon
+- Icontje links of erboven
+- Flexibel in gebruik
 
 ---
 
 ## Technische Eisen
 
-### Formaten Geleverd
+### Formaten
 - **Vector:** AI, EPS, PDF
 - **Raster:** PNG (transparant), JPG
-- **Kleuren:** RGB, CMYK, Pantone
+- **Kleuren:** RGB, CMYK, Pantone codes
 
-### Varianten
+### Varianten Benodigd
 - [ ] Volledig logo (kleur)
 - [ ] Volledig logo (zwart)
 - [ ] Volledig logo (wit)
-- [ ] Short logo "Noir" (kleur)
-- [ ] Short logo "Noir" (zwart)
-- [ ] Short logo "Noir" (wit)
-- [ ] Monogram (optioneel)
+- [ ] Monogram/symbool (kleur)
+- [ ] Monogram/symbool (zwart)
+- [ ] Monogram/symbool (wit)
 - [ ] Favicon set (16x16, 32x32, 180x180)
+- [ ] Social media avatar versies
 
----
-
-## Gebruik Context
-
-### Waar komt het logo?
-1. **Website** — Header, footer, checkout
-2. **Verpakking** — Dozen, stickers, tissue paper
-3. **Sociaal** — Instagram, Facebook, TikTok
-4. **Marketing** — Ads, banners, email
+### Gebruik Context
+1. **Website** — Header, groot formaat
+2. **Verpakking** — Dozen, stickers
+3. **Social** — Instagram, Facebook, TikTok
+4. **Marketing** — Ads, banners
 5. **Fysiek** — Hangtags, woven labels
 
 ---
 
 ## Wat We NIET Willen
 
-❌ Te veel details (moet klein werken)  
-❌ Te trendy (moet 5+ jaar mee)  
-❌ Cartoon-ish of speels  
-❌ Overdreven luxe (geen kronen, leeuwen)  
-❌ Te veel kleuren (max 2-3)
+❌ Te trendy (moet 5-10 jaar mee)  
+❌ Te speels of cartoon-ish  
+❌ Overdreven luxe (geen kronen)  
+❌ Te veel kleuren  
+❌ Illegible fonts  
+❌ Te veel details
 
 ---
 
 ## Budget & Timeline
 
-**Budget:** €500-1500 (afhankelijk van ervaring)  
+**Budget:** €500-1500  
 **Deadline:** 2 weken na briefing  
 **Revisies:** 2-3 rondes inclusief
+
+---
+
+## Inspiratie Beelden
+
+*[Voeg hier URLs of afbeeldingen toe van logos die je mooi vindt]*
+
+### Suggesties om te zoeken:
+- "French fashion brand logos"
+- "Elegant serif wordmarks"
+- "Minimalist luxury logos"
+- "Timeless fashion branding"
 
 ---
 
@@ -112,20 +132,14 @@
 
 **Opdrachtgever:** [Jouw naam]  
 **Email:** [Jouw email]  
-**Website ref:** julesvalmont.fr (wat wij beter gaan doen)
+**Website:** montrelle.fr (in ontwikkeling)
+
+**Belangrijk:** Logo moet werken op:
+- Donkere achtergrond (header)
+- Lichte achtergrond (verpakking)
+- Kleine formaten (favicon)
 
 ---
 
-## Inspiratie Moodboard
-
-*[Voeg hier afbeeldingen toe van logos die je mooi vindt]*
-
-### Suggesties om te zoeken:
-- Parijse fashion brand logos
-- Minimalist typography logos
-- Black and white fashion brands
-- French heritage brands
-
----
-
-*Brief versie 1.0 — 28 maart 2026*
+*Logo Brief — Montrelle*  
+*Versie 1.0 — 28 maart 2026*

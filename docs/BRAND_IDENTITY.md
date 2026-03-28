@@ -1,46 +1,59 @@
-# Noir — Merk Identiteit
+# Montrelle — Merk Identiteit
 
 **Gekozen:** 28 maart 2026  
-**Markt:** Frankrijk  
-**Variant:** Noir & Blanc (volledige naam) / Noir (korte naam)
+**Domein:** Montrelle.fr  
+**Markt:** Frankrijk 🇫🇷  
+**Sector:** Mode e-commerce (Dames & Heren)
 
 ---
 
 ## Merknaam
 
-### Primair: **Noir & Blanc**
-### Kort: **Noir**
+### Primair: **Montrelle**
 ### Tagline opties:
-- "Élégance intemporelle"
-- "L'essence du style"
-- "Depuis 2024" (of startjaar)
+- "L'élégance à la française"
+- "Votre style, notre passion"
+- "Intemporel & Moderne"
+- "Depuis 2024"
+
+### Betekenis
+"Montrelle" evocatie van:
+- **Mont** — Bergen, hoogte, aspiratie
+- **Relle** — Echte, authentiek (van "réelle")
+- Klinkt Frans, elegant, memorabel
 
 ---
 
 ## Merk Positionering
 
 ### Who We Are
-Noir is een Franse modemerk voor mannen en vrouwen die streven naar tijdloze elegantie. We bieden premium basics en statement pieces die nooit uit de mode raken.
+Montrelle is een Frans modemerk voor de moderne professional die streeft naar tijdloze elegantie. We combineren klassieke Franse stijl met eigentijdse comfort.
 
 ### Brand Promise
+- Elegante mode voor elke dag
 - Kwaliteit die je voelt
-- Stijl die jaren meegaat  
 - Prijzen die verrassen
+- Service die overtuigt
 
 ### Target Audience
-**Primary:** 25-45 jaar, professionals, stedelijk
-- Waardeert kwaliteit over kwantiteit
-- Zoekt investeringsstukken
-- Volgt geen trends blind
-- Woont in Parijs, Lyon, Bordeaux, Marseille
+**Primary:** 25-45 jaar
+- Werkende professionals
+- Stedelijk, Parijs & grote steden
+- Middelhoog/hoog inkomen
+- Waardeert kwaliteit & stijl
+- Actief op Instagram & LinkedIn
 
-**Secondary:** 45-55 jaar, gevestigd, klassieke smaak
+**Secondary:** 45-55 jaar
+- Gevestigde professionals
+- Klassieke smaak
+- Loyal aan merken
 
 ### Tone of Voice
-- Elegant maar niet stijf
-- Warm maar professioneel
-- Frans met internationale allure
+- Elegant maar toegankelijk
+- Warm en uitnodigend
+- Professioneel met persoonlijke touch
 - Vertrouwen zonder arrogantie
+- Frans met internationale allure
 
 ---
 
@@ -49,182 +62,201 @@ Noir is een Franse modemerk voor mannen en vrouwen die streven naar tijdloze ele
 ### Kleur Palet
 
 **Primair:**
-- **Noir Profond:** #0A0A0A — Diep zwart, niet plat
-- **Blanc Cassé:** #FAF9F6 — Warm wit, niet klinisch
-- **Gris Perle:** #E5E5E5 — Zacht grijs
+- **Montrelle Noir:** #0A0A0A — Diep zwart
+- **Montrelle Blanc:** #FAF9F6 — Warm wit
+- **Montrelle Gris:** #4A4A4A — Charcoal
 
 **Accent:**
-- **Or Vieilli:** #B8A88A — Oud goud, vintage luxe
-- **Rouge Brique:** #A0522D — Voor "Soldes", accent
+- **Or Montrelle:** #B8A88A — Oud goud, signature
+- **Rouge:** #A52A2A — Voor kortingen
 
 **Supporting:**
-- **Beige Naturel:** #D4C5B5
-- **Gris Ardoise:** #4A4A4A
+- **Beige:** #D4C5B5
+- **Gris Clair:** #E5E5E5
 
 ### Typografie
 
 **Logo/Headings:**
-- **Didot** of **Bodoni** — Frans, elegant, mode
+- **Didot** of **Bodoni** — Frans, elegant
 - Alternatief: **Playfair Display** (gratis)
 
 **Body Text:**
-- **Helvetica Neue** of **Inter** — Clean, leesbaar
+- **Inter** of **Helvetica Neue** — Modern, leesbaar
 - Alternatief: **DM Sans** (gratis)
-
-**Accent/Captions:**
-- **Cormorant Garamond** — Tijdloos, warm
 
 ### Logo Concepten
 
-#### Optie 1: Woordmerk Zuiver
-"NOIR" in Didot/Bodoni, all caps, strak gespatieerd
-"& BLANC" kleiner, eronder of erachter
+#### Optie 1: Woordmerk
+"MONTRELLE" in Didot/Bodoni, all caps
+Strak gespatieerd, tijdloos
 
 #### Optie 2: Monogram
-"N" en "B" gecombineerd in een symbool
+"M" met subtiele berg-silhouet (mont = berg)
 Minimalistisch, herkenbaar
 
-#### Optie 3: Frame/Label
-Naam in een subtiel kader
-Vintage luggage tag vibes
+#### Optie 3: Handgeschreven
+"Montrelle" in elegante script
+Persoonlijk, luxe
 
-#### Optie 4: Abstract Symbool
-Cirkel die half zwart/half wit is
-Subtiel, modern
+#### Optie 4: Modern Geometric
+Clean sans-serif met unieke letter "M"
+Modern, jong, fris
 
 ---
 
 ## Fotografie Stijl
 
 ### Product Fotografie
-- Clean, witte achtergrond
+- Clean achtergrond (wit of lichtgrijs)
 - Grote foto's (min 2000px)
-- Details zichtbaar
+- Multi-angle (voor, achter, detail)
 - Flat lays voor accessoires
 
 ### Lifestyle Fotografie
-- Parijse locaties (dakterrassen, cafés, Seine)
-- Natuurlijk licht
-- Modellen: divers, elegant, confident
-- "Caught in the moment" — niet geposeerd
-- Focus op details (handen, schoenen, tas)
+- Parijse setting: cafés, kantoren, Seine
+- Natuurlijk daglicht
+- Modellen: elegant, confident, divers
+- "Moment" fotografie — niet te geposeerd
+- Details: handen, schoenen, sieraden
 
 ### Color Grading
-- Warme tinten
-- Lichte film grain
-- Slight desaturation
-- Crushed blacks (niet te veel)
+- Warme, film-achtige tinten
+- Lichte grain voor textuur
+- Natuurlijke huidstinten
+- Diepe zwarten, zachte highlights
 
 ---
 
 ## Verpakking & Unboxing
 
 ### Doos
-- Zwart mat of kraft met zwart bedrukking
-- Logo in goudfolie (accent)
+- Kraft karton met zwart bedrukking
+- Logo in goudfolie
 - Tissue paper met patroon
-- Sticker "Merci pour votre confiance"
+- Sticker "Merci de votre confiance"
 
-### Extra's
-- Bedankkaartje
+### Inhoud
+- Bedankkaartje (handtekening-style)
 - Care instructions luxe kaart
 - Stofzakje voor delicate items
-- Sticker set (branded)
+- Retourlabel (gratis)
+- Sticker set
 
-### Retour Labels
-- Inclusief in doos
-- Gratis retour = vertrouwen
+### Ervaring
+- Unboxing moet voelen als cadeau
+- Premium, maar niet verspillend
+- Duurzaam materiaal
 
 ---
 
 ## Website Tone
 
 ### Homepage Hero
-"L'élégance n'est pas une question de prix, mais de choix."
-(Elegance is not a question of price, but of choice)
+"L'élégance n'est pas un luxe, c'est un choix."
+(Elegance is not a luxury, it's a choice)
 
 ### Product Beschrijvingen
 Focus op:
-- Materiaalherkomst
-- Pasvorm en comfort
-- Styling mogelijkheden
-- "Investering" taalgebruik
+- Materiaalkwaliteit
+- Pasvorm & comfort
+- Styling tips
+- "Investering" mentaliteit
 
 ### CTA's (Frans)
-- "Ajouter au panier" (Add to cart)
-- "Découvrir" (Discover)
-- "Choisir ma taille" (Choose my size)
-- "Commander" (Order)
+- "Ajouter au panier"
+- "Découvrir"
+- "Voir la collection"
+- "Commander"
 
 ---
 
 ## Social Media
 
-### Instagram Handle
-@noir.et.blanc.officiel
+### Handles (Te reserveren)
+- **Instagram:** @montrelle.fr
+- **TikTok:** @montrelle.fr
+- **Facebook:** /montrelle.fr
+- **Pinterest:** /montrelle
 
-### Content Pillars
-1. **Produits** — Studio shots, details
-2. **Style** — Outfit inspiratie
-3. **Behind the Scenes** — Making of, team
-4. **Lifestyle** — Parijs, kunst, cultuur
-5. **Community** — Klanten, UGC
+### Content Strategie
 
-### Hashtags
-#NoirEtBlanc #ModeFrancaise #StyleIntemporel #GarderobeParfaite #EleganceQuotidienne
+**Pijlers:**
+1. **Produits** — Studio, details, flat lays
+2. **Style** — Outfit inspiratie, "How to wear"
+3. **Behind Montrelle** — Team, kantoor, process
+4. **Lifestyle** — Parijs, werk, cultuur
+5. **Community** — Klanten, UGC, reviews
+
+**Hashtags:**
+#Montrelle #ModeFrancaise #StyleIntemporel #EleganceQuotidienne #GarderobeParfaite
 
 ---
 
 ## Competitieve Differentiatie
 
 ### vs. JulesValmont.fr
-- Modernere website & UX
-- Betere fotografie
-- Snellere levering ( optimised supply chain)
-- Sterkere community
+- Modernere UX & design
+- Betere klantenservice
+- Snellere levering
+- Actievere community
 
-### vs. Grote Spelers (Zara, H&M)
+### vs. Zara/H&M
 - Hogere kwaliteit
 - Tijdloos vs. fast fashion
-- Persoonlijkere service
 - Duurzaamheidsfocus
+- Persoonlijke service
 
-### vs. Luxe Merken
+### vs. Sandro/Maje
 - Betaalbaarder
-- Toegankelijker
-- Geen wachttijden
+- Geen fysieke winkels = lagere prijzen
+- Directe klantrelatie
 
 ---
 
 ## Launch Strategie
 
-### Fase 1: Soft Launch
-- VIP lijst (friends & family)
-- 20% korting early birds
+### Fase 1: Soft Launch (Week 1-2)
+- VIP lijst: vrienden, familie, netwerk
+- 20% early bird korting
 - Verzamel feedback
+- Test alle processen
 
-### Fase 2: Public Launch
-- Instagram/Facebook ads
-- Influencer samenwerkingen
-- PR: modeblogs, lifestyle magazines
+### Fase 2: Public Launch (Week 3-4)
+- Instagram & Facebook ads
+- Micro-influencers (10k-50k volgers)
+- PR: modeblogs, Marie Claire, Elle
+- Opening korting: 15% eerste 100 klanten
 
-### Fase 3: Groei
+### Fase 3: Groei (Maand 2-3)
 - Retargeting campagnes
-- Email marketing
-- Loyalty programma
+- Email marketing (Klaviyo)
+- Loyalty programma lanceren
+- UGC campagne
 
 ---
 
-## Domein & Handles
+## Domein & Handles Checklist
 
-### Te Checken:
-- [ ] noir-blanc.fr (primair)
-- [ ] noir-blanc.com (redirect)
-- [ ] @noir.et.blanc (Instagram)
-- [ ] @noiretblanc (TikTok)
-- [ ] Noir & Blanc (Facebook pagina)
-- [ ] NoirBlanc (Pinterest)
+- [x] **montrelle.fr** — Aankopen!
+- [ ] **montrelle.com** — Redirect (indien mogelijk)
+- [ ] **@montrelle.fr** — Instagram
+- [ ] **@montrelle.fr** — TikTok
+- [ ] **Montrelle** — Facebook
+- [ ] **Montrelle** — Pinterest
 
 ---
 
-*Merkidentiteit document — Noir & Blanc*
+## Email Signatures
+
+**Standaard:**
+```
+Met vriendelijke groet,
+[Naam]
+Montrelle — L'élégance à la française
+www.montrelle.fr
+```
+
+---
+
+*Merkidentiteit — Montrelle*
+*Laatst bijgewerkt: 28 maart 2026*
