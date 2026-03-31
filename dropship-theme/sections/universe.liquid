@@ -1,0 +1,275 @@
+{% comment %}
+  Universe Section - About / Brand Story
+  "NOTRE UNIVERS" style from Maison Fierce
+{% endcomment %}
+
+<section class="universe-section" data-section-id="{{ section.id }}">
+  <div class="universe-container">
+    <div class="universe-image" data-aos="fade-right">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}"
+             alt="{{ section.settings.heading | escape }}"
+             loading="lazy"
+             width="800"
+             height="1000">
+      {%- else -%}
+        <div class="universe-image__placeholder"></div>
+      {%- endif -%}
+    </div>
+    
+    <div class="universe-content" data-aos="fade-left">
+      <span class="universe-label">{{ section.settings.label | escape }}</span>
+      <h2 class="universe-heading">{{ section.settings.heading | escape }}</h2>
+      <div class="universe-text">{{ section.settings.text }}</div>
+      
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="universe-button">
+          {{ section.settings.button_label | escape }}
+          <span class="universe-button__arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10h12m-6-6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .universe-section {
+    padding: 10rem 0;
+    background: var(--color-background);
+    overflow: hidden;
+  }
+  
+  .universe-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    max-width: 140rem;
+    margin: 0 auto;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 989px) {
+    .universe-container {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+  }
+  
+  .universe-image {
+    position: relative;
+    height: 100%;
+    min-height: 60vh;
+    overflow: hidden;
+  }
+  
+  .universe-image img,
+  .universe-image__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .universe-image__placeholder {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  }
+  
+  .universe-section:hover .universe-image img {
+    transform: scale(1.02);
+  }
+  
+  .universe-content {
+    padding: 6rem 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  @media screen and (max-width: 989px) {
+    .universe-content {
+      padding: 0 3rem;
+      text-align: center;
+      align-items: center;
+    }
+  }
+  
+  .universe-label {
+    font-size: 1.1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+  
+  .universe-heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.8rem, 4vw, 4rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0 0 2.5rem;
+    letter-spacing: -0.01em;
+  }
+  
+  .universe-text {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    opacity: 0.8;
+    margin-bottom: 3.5rem;
+    max-width: 50rem;
+  }
+  
+  .universe-text p {
+    margin: 0 0 1.5rem;
+  }
+  
+  .universe-text p:last-child {
+    margin-bottom: 0;
+  }
+  
+  .universe-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--color-text);
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+    align-self: flex-start;
+  }
+  
+  @media screen and (max-width: 989px) {
+    .universe-button {
+      align-self: center;
+    }
+  }
+  
+  .universe-button::before {
+    content: '';
+    position: absolute;
+    bottom: 1.2rem;
+    left: 0;
+    width: calc(100% - 3.5rem);
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  
+  .universe-button:hover::before {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  
+  .universe-button__arrow {
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .universe-button:hover .universe-button__arrow {
+    background: var(--color-text);
+    color: var(--color-background);
+    transform: translateX(5px);
+  }
+  
+  /* Reversed layout option */
+  .universe-section--reversed .universe-container {
+    direction: rtl;
+  }
+  
+  .universe-section--reversed .universe-content {
+    direction: ltr;
+  }
+  
+  .universe-section--reversed .universe-image {
+    direction: ltr;
+  }
+  
+  /* Animations */
+  [data-aos="fade-right"] {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  [data-aos="fade-left"] {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  [data-aos].aos-animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Universe / About",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Notre Univers"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Des pièces intemporelles pensées pour sublimer votre style au quotidien."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Chez Montrelle, nous croyons en une mode qui transcende les tendances. Nos créations allient élégance classique et confort moderne pour vous accompagner dans chaque moment de votre vie.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Voir la collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "/collections"
+    },
+    {
+      "type": "checkbox",
+      "id": "reverse_layout",
+      "label": "Reverse layout (image on right)",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Universe / About"
+    }
+  ]
+}
+{% endschema %}

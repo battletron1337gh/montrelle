@@ -1,79 +1,120 @@
-<!-- Collection Template -->
+{% comment %}
+  Collection Template
+{% endcomment %}
 
-<div class="collection-template">
-  <div class="page-width">
-    <header class="collection-header">
-      <h1 class="collection-header__title">{{ collection.title }}</h1>
+<section class="collection-section">
+  <div class="collection-hero">
+    <div class="collection-hero__content">
+      <h1 class="collection-hero__title">{{ collection.title }}</h1>
       {%- if collection.description != blank -%}
-        <div class="collection-header__description">{{ collection.description }}</div>
+        <p class="collection-hero__description">{{ collection.description }}</p>
       {%- endif -%}
-    </header>
-
+      <p class="collection-hero__count">{{ collection.products_count }} produit{% if collection.products_count > 1 %}s{% endif %}</p>
+    </div>
+  </div>
+  
+  <div class="page-width">
     <div class="collection-toolbar">
-      <p class="collection-toolbar__count">{{ collection.products_count }} produits</p>
+      <button type="button" class="collection-toolbar__filter-toggle js-filter-toggle">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 5h16M4 5v6M16 5v6M6 11h8M8 11v4M12 11v4"/>
+        </svg>
+        Filtres
+      </button>
       
       <div class="collection-toolbar__sort">
         <label for="SortBy">Trier par</label>
-        <select name="sort_by" id="SortBy">
+        <select name="sort_by" id="SortBy" class="collection-toolbar__select">
           <option value="manual">En vedette</option>
-          <option value="price-ascending">Prix croissant</option>
-          <option value="price-descending">Prix décroissant</option>
-          <option value="title-ascending">Nom A-Z</option>
-          <option value="title-descending">Nom Z-A</option>
+          <option value="price-ascending">Prix: Croissant</option>
+          <option value="price-descending">Prix: Décroissant</option>
+          <option value="title-ascending">A-Z</option>
+          <option value="title-descending">Z-A</option>
           <option value="created-descending">Nouveautés</option>
-          <option value="best-selling">Meilleures ventes</option>
         </select>
       </div>
     </div>
-
+    
     <div class="collection-grid">
       {%- for product in collection.products -%}
-        <div class="product-card">
-          <a href="{{ product.url }}" class="product-card__link">
-            <img src="{{ product.featured_image | image_url: width: 600 }}" 
-                 alt="{{ product.title }}"
-                 class="product-card__image"
-                 loading="lazy">
+        <article class="collection-product" data-aos="fade-up" data-aos-delay="{{ forloop.index | modulo: 4 | times: 100 }}">
+          <a href="{{ product.url }}" class="collection-product__link">
+            <div class="collection-product__image-wrapper">
+              {%- if product.featured_image -%}
+                <img src="{{ product.featured_image | image_url: width: 600 }}"
+                     alt="{{ product.featured_image.alt | escape }}"
+                     class="collection-product__image collection-product__image--primary"
+                     loading="lazy">
+                {%- if product.images[1] -%}
+                  <img src="{{ product.images[1] | image_url: width: 600 }}"
+                       alt="{{ product.images[1].alt | escape }}"
+                       class="collection-product__image collection-product__image--hover"
+                       loading="lazy">
+                {%- endif -%}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'collection-product__image' }}
+              {%- endif -%}
+              
+              <div class="collection-product__overlay">
+                <span>Voir le produit</span>
+              </div>
+              
+              {%- if product.compare_at_price > product.price -%}
+                <span class="collection-product__badge collection-product__badge--sale">-{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
+              {%- elsif product.tags contains 'new' -%}
+                <span class="collection-product__badge collection-product__badge--new">Nouveau</span>
+              {%- endif -%}
+            </div>
+            
+            <div class="collection-product__info">
+              <h3 class="collection-product__title">{{ product.title }}</h3>
+              <div class="collection-product__price">
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="collection-product__price-current">{{ product.price | money }}</span>
+                  <s>{{ product.compare_at_price | money }}</s>
+                {%- else -%}
+                  <span>{{ product.price | money }}</span>
+                {%- endif -%}
+              </div>
+            </div>
           </a>
-          <div class="product-card__info">
-            <h3 class="product-card__title">
-              <a href="{{ product.url }}">{{ product.title }}</a>
-            </h3>
-            <p class="product-card__price">{{ product.price | money }}</p>
-          </div>
-        </div>
+        </article>
       {%- endfor -%}
     </div>
-
+    
     {%- if paginate.pages > 1 -%}
-      <div class="pagination">
+      <div class="collection-pagination">
         {{ paginate | default_pagination }}
       </div>
     {%- endif -%}
   </div>
-</div>
+</section>
 
 <style>
-  .collection-template {
-    padding: 4rem 0;
-  }
-  
-  .page-width {
-    max-width: 140rem;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  .collection-header {
+  .collection-hero {
+    background: var(--color-background-dark);
+    padding: 10rem 0 6rem;
     text-align: center;
     margin-bottom: 4rem;
   }
   
-  .collection-header__title {
-    font-family: var(--font-heading-family);
-    font-size: 4rem;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
+  .collection-hero__title {
+    font-size: clamp(3.6rem, 6vw, 5rem);
+    margin: 0 0 1.5rem;
+  }
+  
+  .collection-hero__description {
+    font-size: 1.6rem;
+    opacity: 0.7;
+    max-width: 60rem;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .collection-hero__count {
+    font-size: 1.4rem;
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
   
   .collection-toolbar {
@@ -81,42 +122,191 @@
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
     margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .collection-toolbar__filter-toggle {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .collection-toolbar__filter-toggle:hover {
+    opacity: 0.6;
+  }
+  
+  .collection-toolbar__sort {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.4rem;
+  }
+  
+  .collection-toolbar__select {
+    padding: 0.8rem 2rem;
+    border: 1px solid rgba(0,0,0,0.15);
+    background: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
   }
   
   .collection-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    margin-bottom: 6rem;
   }
   
-  @media screen and (min-width: 750px) {
+  @media screen and (max-width: 1200px) {
     .collection-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
   
-  @media screen and (min-width: 990px) {
+  @media screen and (max-width: 749px) {
     .collection-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
     }
   }
+  
+  .collection-product__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .collection-product__image-wrapper {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: var(--color-background-dark);
+    margin-bottom: 1.5rem;
+  }
+  
+  .collection-product__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .collection-product__image--hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+  
+  .collection-product:hover .collection-product__image--primary {
+    opacity: 0;
+  }
+  
+  .collection-product:hover .collection-product__image--hover {
+    opacity: 1;
+  }
+  
+  .collection-product__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .collection-product:hover .collection-product__overlay {
+    opacity: 1;
+  }
+  
+  .collection-product__overlay span {
+    background: #fff;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .collection-product:hover .collection-product__overlay span {
+    transform: translateY(0);
+  }
+  
+  .collection-product__badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  
+  .collection-product__badge--sale {
+    background: #c41e3a;
+    color: #fff;
+  }
+  
+  .collection-product__badge--new {
+    background: #0a0a0a;
+    color: #fff;
+  }
+  
+  .collection-product__info {
+    text-align: center;
+  }
+  
+  .collection-product__title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0 0 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .collection-product__price {
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .collection-product__price-current {
+    color: #c41e3a;
+    font-weight: 500;
+  }
+  
+  .collection-product__price s {
+    opacity: 0.5;
+  }
+  
+  .collection-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 0;
+  }
+  
+  .collection-pagination a,
+  .collection-pagination span {
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+  }
+  
+  .collection-pagination a:hover,
+  .collection-pagination .current {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
 </style>
-
-{% schema %}
-{
-  "name": "Collection Template",
-  "settings": [
-    {
-      "type": "range",
-      "id": "products_per_page",
-      "label": "Products per page",
-      "min": 8,
-      "max": 48,
-      "step": 4,
-      "default": 24
-    }
-  ]
-}
-{% endschema %}

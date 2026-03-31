@@ -1,14 +1,12 @@
 {% comment %}
-  Header Section
-  Navigation and logo
+  Header Section - Modern minimalist
 {% endcomment %}
 
-<header class="header" role="banner">
+<header class="header" role="banner" id="header">
   <div class="header__container">
     {%- if section.settings.menu != blank -%}
-      <nav class="header__nav header__nav--left" role="navigation">
-        <button type="button" class="header__menu-toggle js-menu-toggle" aria-label="{{ 'general.navigation.toggle' | t }}">
-          <span></span>
+      <nav class="header__nav" role="navigation">
+        <button type="button" class="header__menu-toggle js-menu-toggle" aria-label="Menu">
           <span></span>
           <span></span>
         </button>
@@ -31,7 +29,6 @@
                alt="{{ shop.name }}" 
                class="header__logo-image"
                width="{{ settings.logo_width }}"
-               height="auto"
                loading="eager">
         {%- else -%}
           <span class="header__logo-text">MONTRELLE</span>
@@ -41,34 +38,27 @@
 
     <div class="header__icons">
       {%- if settings.enable_search -%}
-        <button type="button" class="header__icon js-search-toggle" aria-label="{{ 'general.search.search' | t }}">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <button type="button" class="header__icon js-search-toggle" aria-label="Rechercher">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="9" r="7"/>
+            <path d="M14 14l4 4"/>
           </svg>
         </button>
       {%- endif -%}
 
-      {%- if settings.enable_dark_mode_toggle -%}
-        <button type="button" class="header__icon js-dark-mode-toggle" aria-label="Toggle dark mode">
-          <svg class="icon-sun" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="2"/>
-            <path d="M10 1v2M10 17v2M1 10h2M17 10h2M3.34 3.34l1.42 1.42M15.24 15.24l1.42 1.42M3.34 16.66l1.42-1.42M15.24 4.76l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <svg class="icon-moon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
-            <path d="M17.5 11.5c0 3.5-2.5 6.5-6 7a7.5 7.5 0 1 1 6-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      {%- endif -%}
-
-      <a href="{{ routes.account_url }}" class="header__icon" aria-label="{{ 'customer.account.title' | t }}">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 19v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <a href="{{ routes.account_url }}" class="header__icon" aria-label="Compte">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="10" cy="6" r="4"/>
+          <path d="M3 18c0-4 3-6 7-6s7 2 7 6"/>
         </svg>
       </a>
 
-      <button type="button" class="header__icon js-cart-toggle" aria-label="{{ 'cart.general.title' | t }}">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 1L1 5v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5l-3-4H4zM1 5h18M14 9a4 4 0 0 1-8 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <button type="button" class="header__icon header__icon--cart js-cart-toggle" aria-label="Panier">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 6h13l-1.5 9h-10z"/>
+          <circle cx="8" cy="17" r="1"/>
+          <circle cx="14" cy="17" r="1"/>
+          <path d="M4 6l-1-3h-2"/>
         </svg>
         <span class="header__cart-count js-cart-count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
       </button>
@@ -78,11 +68,19 @@
 
 <style>
   .header {
-    background-color: var(--color-background);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0,0,0,0.05);
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 100;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+  
+  .header--scrolled {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
   }
   
   .header__container {
@@ -91,10 +89,10 @@
     justify-content: space-between;
     max-width: 140rem;
     margin: 0 auto;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 3rem;
   }
   
-  .header__nav--left {
+  .header__nav {
     flex: 1;
   }
   
@@ -103,7 +101,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 2.5rem;
+    gap: 3rem;
   }
   
   @media screen and (min-width: 990px) {
@@ -118,15 +116,27 @@
   .header__menu-link {
     color: var(--color-text);
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    transition: opacity 0.2s;
+    position: relative;
+    padding: 0.5rem 0;
   }
   
-  .header__menu-link:hover,
-  .header__menu-link--active {
-    opacity: 0.6;
+  .header__menu-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+  
+  .header__menu-link:hover::after,
+  .header__menu-link--active::after {
+    width: 100%;
   }
   
   .header__logo {
@@ -136,54 +146,67 @@
   
   .header__logo-link {
     display: inline-block;
+    transition: opacity 0.3s ease;
+  }
+  
+  .header__logo-link:hover {
+    opacity: 0.7;
   }
   
   .header__logo-image {
-    max-width: 150px;
+    max-width: 140px;
     height: auto;
   }
   
   .header__logo-text {
     font-family: var(--font-heading-family);
-    font-size: 2.2rem;
-    letter-spacing: 0.15em;
+    font-size: 2rem;
+    letter-spacing: 0.2em;
     color: var(--color-text);
+    font-weight: 400;
   }
   
   .header__icons {
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    gap: 1.5rem;
+    gap: 1.2rem;
   }
   
   .header__icon {
     background: none;
     border: none;
-    padding: 0.5rem;
+    padding: 0.8rem;
     cursor: pointer;
     color: var(--color-text);
     position: relative;
-    transition: opacity 0.2s;
+    transition: all 0.3s ease;
+    border-radius: 50%;
   }
   
   .header__icon:hover {
-    opacity: 0.6;
+    background: rgba(0,0,0,0.05);
+    transform: translateY(-2px);
+  }
+  
+  .header__icon svg {
+    display: block;
   }
   
   .header__cart-count {
     position: absolute;
-    top: 0;
-    right: 0;
-    background: var(--color-primary);
-    color: var(--color-primary-light);
+    top: 2px;
+    right: 2px;
+    background: var(--color-accent, #0a0a0a);
+    color: #fff;
     font-size: 1rem;
-    width: 1.6rem;
-    height: 1.6rem;
+    min-width: 1.8rem;
+    height: 1.8rem;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 500;
   }
   
   .header__menu-toggle {
@@ -192,17 +215,42 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    padding: 0.5rem;
+    gap: 6px;
+    padding: 0.8rem;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
   }
   
   .header__menu-toggle span {
     display: block;
-    width: 22px;
-    height: 2px;
+    width: 24px;
+    height: 1.5px;
     background-color: var(--color-text);
+    transition: all 0.3s ease;
+  }
+  
+  .header__menu-toggle:hover span:first-child {
+    transform: translateY(-2px);
+  }
+  
+  .header__menu-toggle:hover span:last-child {
+    transform: translateY(2px);
   }
 </style>
+
+<script>
+  // Header scroll effect
+  document.addEventListener('scroll', function() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+      header.classList.add('header--scrolled');
+    } else {
+      header.classList.remove('header--scrolled');
+    }
+  });
+</script>
 
 {% schema %}
 {

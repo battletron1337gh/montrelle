@@ -1,36 +1,31 @@
 {% comment %}
-  Featured Collection Section
-  Product grid for homepage
+  Featured Collection - Maison Fierce Style
+  Modern product grid with hover effects
 {% endcomment %}
 
 <section class="featured-collection" data-section-id="{{ section.id }}">
   <div class="page-width">
-    {%- if section.settings.title != blank -%}
-      <div class="section-header">
-        <h2 class="section-header__title">{{ section.settings.title | escape }}</h2>
-        {%- if section.settings.description != blank -%}
-          <p class="section-header__description">{{ section.settings.description | escape }}</p>
-        {%- endif -%}
-        {%- if section.settings.show_view_all -%}
-          <a href="{{ section.settings.collection.url }}" class="section-header__link">
-            {{ 'sections.featured_collection.view_all' | t }}
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </a>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+    <div class="collection-header">
+      <h2 class="collection-header__title">{{ section.settings.title | escape }}</h2>
+      {%- if section.settings.show_view_all and section.settings.collection != blank -%}
+        <a href="{{ section.settings.collection.url }}" class="collection-header__link">
+          {{ 'sections.featured_collection.view_all' | t | default: 'Tout' }}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {%- endif -%}
+    </div>
 
-    <div class="featured-collection__grid" data-grid="{{ section.settings.columns_desktop }}">
+    <div class="collection-grid" data-columns="{{ section.settings.columns_desktop }}">
       {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-        <div class="product-card">
-          <div class="product-card__image-wrapper">
-            <a href="{{ product.url }}" class="product-card__link">
+        <article class="product-card" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
+          <a href="{{ product.url }}" class="product-card__link">
+            <div class="product-card__image-wrapper">
               {%- if product.featured_image -%}
                 <img src="{{ product.featured_image | image_url: width: 800 }}"
                      alt="{{ product.featured_image.alt | escape }}"
-                     class="product-card__image"
+                     class="product-card__image product-card__image--primary"
                      loading="lazy"
                      width="600"
                      height="800">
@@ -45,52 +40,31 @@
               {%- else -%}
                 {{ 'product-1' | placeholder_svg_tag: 'product-card__image product-card__image--placeholder' }}
               {%- endif -%}
-            </a>
-            
-            <button type="button" class="product-card__wishlist" aria-label="Add to wishlist">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M10 18s-7-4.5-7-9.5A5 5 0 0 1 10 4a5 5 0 0 1 7 4.5c0 5-7 9.5-7 9.5z" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-            </button>
-            
-            {%- if product.compare_at_price > product.price -%}
-              <span class="product-card__badge product-card__badge--sale">-{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
-            {%- elsif product.tags contains 'new' -%}
-              <span class="product-card__badge product-card__badge--new">Nouveau</span>
-            {%- elsif product.tags contains 'bestseller' -%}
-              <span class="product-card__badge product-card__badge--bestseller">Bestseller</span>
-            {%- endif -%}
-            
-            <button type="button" class="product-card__quick-view" data-product-id="{{ product.id }}">
-              Aperçu rapide
-            </button>
-          </div>
-          
-          <div class="product-card__info">
-            <h3 class="product-card__title">
-              <a href="{{ product.url }}">{{ product.title }}</a>
-            </h3>
-            
-            <div class="product-card__price">
+              
+              <div class="product-card__overlay">
+                <span class="product-card__quick-view">Voir le produit</span>
+              </div>
+              
               {%- if product.compare_at_price > product.price -%}
-                <span class="product-card__price--sale">{{ product.price | money }}</span>
-                <s class="product-card__price--compare">{{ product.compare_at_price | money }}</s>
-              {%- else -%}
-                <span class="product-card__price--regular">{{ product.price | money }}</span>
+                <span class="product-card__badge product-card__badge--sale">-{{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%</span>
+              {%- elsif product.tags contains 'new' -%}
+                <span class="product-card__badge product-card__badge--new">Nouveau</span>
               {%- endif -%}
             </div>
             
-            {%- if product.variants.size > 1 -%}
-              <div class="product-card__variants">
-                {%- for variant in product.variants limit: 4 -%}
-                  {%- if variant.image -%}
-                    <button type="button" class="product-card__swatch" data-variant-id="{{ variant.id }}" style="background-image: url({{ variant.image | image_url: width: 100 }})"></button>
-                  {%- endif -%}
-                {%- endfor -%}
+            <div class="product-card__info">
+              <h3 class="product-card__title">{{ product.title }}</h3>
+              <div class="product-card__price">
+                {%- if product.compare_at_price > product.price -%}
+                  <span class="product-card__price-current">{{ product.price | money }}</span>
+                  <s class="product-card__price-compare">{{ product.compare_at_price | money }}</s>
+                {%- else -%}
+                  <span class="product-card__price-current">{{ product.price | money }}</span>
+                {%- endif -%}
               </div>
-            {%- endif -%}
-          </div>
-        </div>
+            </div>
+          </a>
+        </article>
       {%- endfor -%}
     </div>
   </div>
@@ -98,79 +72,92 @@
 
 <style>
   .featured-collection {
-    padding: 6rem 0;
+    padding: 8rem 0;
+    background: var(--color-background);
   }
   
   .page-width {
     max-width: 140rem;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 3rem;
   }
   
-  .section-header {
-    text-align: center;
+  .collection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 4rem;
   }
   
-  .section-header__title {
+  .collection-header__title {
     font-family: var(--font-heading-family);
-    font-size: 3.2rem;
-    font-weight: 400;
-    margin: 0 0 1rem;
+    font-size: clamp(2.4rem, 4vw, 3.2rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    margin: 0;
   }
   
-  .section-header__description {
-    color: var(--color-text);
-    opacity: 0.7;
-    margin: 0 0 1.5rem;
-  }
-  
-  .section-header__link {
+  .collection-header__link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
     color: var(--color-text);
     text-decoration: none;
-    font-size: 1.4rem;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 0.2rem;
-    transition: opacity 0.2s;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    transition: color 0.3s ease;
   }
   
-  .section-header__link:hover {
-    opacity: 0.6;
+  .collection-header__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
   }
   
-  .featured-collection__grid {
+  .collection-header__link:hover::after {
+    width: 100%;
+  }
+  
+  .collection-header__link:hover {
+    color: var(--color-accent);
+  }
+  
+  .collection-grid {
     display: grid;
-    gap: 2rem;
+    gap: 2.5rem;
     grid-template-columns: repeat(2, 1fr);
   }
   
   @media screen and (min-width: 750px) {
-    .featured-collection__grid {
+    .collection-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
   
   @media screen and (min-width: 990px) {
-    .featured-collection__grid {
+    .collection-grid[data-columns="4"] {
       grid-template-columns: repeat(4, 1fr);
     }
-  }
-  
-  .featured-collection__grid[data-grid="3"] {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media screen and (min-width: 750px) {
-    .featured-collection__grid[data-grid="3"] {
+    .collection-grid[data-columns="3"] {
       grid-template-columns: repeat(3, 1fr);
     }
   }
   
+  /* Product Card */
   .product-card {
     position: relative;
+  }
+  
+  .product-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
   }
   
   .product-card__image-wrapper {
@@ -178,19 +165,14 @@
     aspect-ratio: 3/4;
     overflow: hidden;
     background: #f5f5f5;
-  }
-  
-  .product-card__link {
-    display: block;
-    width: 100%;
-    height: 100%;
+    margin-bottom: 1.5rem;
   }
   
   .product-card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.4s, transform 0.6s;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
   }
   
   .product-card__image--hover {
@@ -199,89 +181,73 @@
     opacity: 0;
   }
   
-  .product-card:hover .product-card__image:first-child {
+  .product-card:hover .product-card__image--primary {
     opacity: 0;
   }
   
   .product-card:hover .product-card__image--hover {
     opacity: 1;
-  }
-  
-  .product-card:hover .product-card__image {
     transform: scale(1.03);
   }
   
-  .product-card__wishlist {
+  .product-card:hover .product-card__image--primary {
+    transform: scale(1.03);
+  }
+  
+  .product-card__overlay {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 3.6rem;
-    height: 3.6rem;
-    border-radius: 50%;
-    background: #fff;
-    border: none;
-    cursor: pointer;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s;
+    transition: opacity 0.4s ease;
   }
   
-  .product-card:hover .product-card__wishlist {
+  .product-card:hover .product-card__overlay {
     opacity: 1;
+  }
+  
+  .product-card__quick-view {
+    background: #fff;
+    color: #0a0a0a;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .product-card:hover .product-card__quick-view {
     transform: translateY(0);
+    opacity: 1;
   }
   
   .product-card__badge {
     position: absolute;
-    top: 1rem;
-    left: 1rem;
-    padding: 0.4rem 1rem;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
+    top: 1.5rem;
+    left: 1.5rem;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    font-weight: 500;
   }
   
   .product-card__badge--sale {
-    background: #a52a2a;
+    background: #c41e3a;
     color: #fff;
   }
   
   .product-card__badge--new {
-    background: var(--color-accent);
+    background: #0a0a0a;
     color: #fff;
-  }
-  
-  .product-card__badge--bestseller {
-    background: var(--color-primary);
-    color: #fff;
-  }
-  
-  .product-card__quick-view {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: #fff;
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.3rem;
-    letter-spacing: 0.05em;
-    cursor: pointer;
-    opacity: 0;
-    transition: all 0.3s;
-    white-space: nowrap;
-  }
-  
-  .product-card:hover .product-card__quick-view {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
   }
   
   .product-card__info {
-    padding: 1.5rem 0;
     text-align: center;
   }
   
@@ -289,11 +255,7 @@
     font-size: 1.5rem;
     font-weight: 400;
     margin: 0 0 0.8rem;
-  }
-  
-  .product-card__title a {
-    color: var(--color-text);
-    text-decoration: none;
+    line-height: 1.4;
   }
   
   .product-card__price {
@@ -304,33 +266,48 @@
     gap: 1rem;
   }
   
-  .product-card__price--sale {
-    color: #a52a2a;
+  .product-card__price-current {
+    font-weight: 500;
   }
   
-  .product-card__price--compare {
+  .product-card__price-compare {
     color: var(--color-text);
     opacity: 0.5;
+    text-decoration: line-through;
   }
   
-  .product-card__variants {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-top: 1rem;
+  /* Scroll animations */
+  [data-aos] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
   
-  .product-card__swatch {
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.1);
-    cursor: pointer;
-    background-size: cover;
-    background-position: center;
-    padding: 0;
+  [data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
+
+<script>
+  // Simple intersection observer for scroll animations
+  document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('aos-animate');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+  });
+</script>
 
 {% schema %}
 {
@@ -340,12 +317,7 @@
       "type": "text",
       "id": "title",
       "label": "Title",
-      "default": "Nos meilleures ventes"
-    },
-    {
-      "type": "text",
-      "id": "description",
-      "label": "Description"
+      "default": "Nos essentiels"
     },
     {
       "type": "collection",

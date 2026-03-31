@@ -1,122 +1,289 @@
 {% comment %}
-  Hero Section
-  Main banner on homepage
+  Hero Section - Video Background Support (Maya Theme Style)
 {% endcomment %}
 
 <section class="hero" data-section-id="{{ section.id }}">
-  <div class="hero__container">
-    {%- if section.settings.image != blank -%}
-      <div class="hero__image-wrapper">
-        <img src="{{ section.settings.image | image_url: width: 2000 }}"
-             alt="{{ section.settings.heading | escape }}"
-             class="hero__image"
-             loading="eager"
-             width="{{ section.settings.image.width }}"
-             height="{{ section.settings.image.height }}">
+  <div class="hero__background">
+    {%- if section.settings.video_url != blank -%}
+      <!-- Video Background -->
+      <div class="hero__video-wrapper">
+        <video 
+          class="hero__video"
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          poster="{{ section.settings.video_poster | image_url: width: 2000 }}">
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
       </div>
+    {%- elsif section.settings.video_mp4 != blank -%}
+      <!-- Shopify Hosted Video -->
+      <div class="hero__video-wrapper">
+        <video 
+          class="hero__video"
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          poster="{{ section.settings.video_poster | image_url: width: 2000 }}">
+          <source src="{{ section.settings.video_mp4 }}" type="video/mp4">
+          {%- if section.settings.video_webm != blank -%}
+            <source src="{{ section.settings.video_webm }}" type="video/webm">
+          {%- endif -%}
+        </video>
+      </div>
+    {%- elsif section.settings.image != blank -%}
+      <!-- Image Background -->
+      <img src="{{ section.settings.image | image_url: width: 3000 }}"
+           alt="{{ section.settings.heading | escape }}"
+           class="hero__image"
+           loading="eager">
+    {%- else -%}
+      <div class="hero__placeholder"></div>
     {%- endif -%}
-    
-    <div class="hero__content">
-      {%- if section.settings.subheading != blank -%}
-        <p class="hero__subheading">{{ section.settings.subheading | escape }}</p>
-      {%- endif -%}
-      
-      {%- if section.settings.heading != blank -%}
-        <h1 class="hero__heading">{{ section.settings.heading | escape }}</h1>
-      {%- endif -%}
-      
-      {%- if section.settings.text != blank -%}
-        <div class="hero__text">{{ section.settings.text }}</div>
-      {%- endif -%}
+    <div class="hero__overlay"></div>
+  </div>
+  
+  <div class="hero__content">
+    <div class="hero__text-wrapper">
+      <p class="hero__subheading fade-in-up">{{ section.settings.subheading | escape }}</p>
+      <h1 class="hero__heading fade-in-up delay-1">{{ section.settings.heading | escape }}</h1>
+      <p class="hero__tagline fade-in-up delay-2">{{ section.settings.tagline | escape }}</p>
       
       {%- if section.settings.button_label != blank -%}
-        <a href="{{ section.settings.button_link }}" class="hero__button button">
+        <a href="{{ section.settings.button_link }}" class="hero__button fade-in-up delay-3">
           {{ section.settings.button_label | escape }}
+          <span class="hero__button-line"></span>
         </a>
       {%- endif -%}
     </div>
+  </div>
+  
+  <div class="hero__scroll-indicator">
+    <div class="hero__mouse">
+      <div class="hero__mouse-wheel"></div>
+    </div>
+    <span>Scroll</span>
   </div>
 </section>
 
 <style>
   .hero {
     position: relative;
-    min-height: 90vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
   
-  .hero__image-wrapper {
+  .hero__background {
     position: absolute;
     inset: 0;
     z-index: 1;
   }
   
-  .hero__image {
+  /* Video Styles */
+  .hero__video-wrapper {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+  
+  .hero__video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
   }
   
-  .hero__image-wrapper::after {
-    content: '';
+  /* Image Styles */
+  .hero__image,
+  .hero__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: heroZoom 20s ease-in-out infinite alternate;
+  }
+  
+  .hero__placeholder {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+  }
+  
+  @keyframes heroZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+  }
+  
+  .hero__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.4));
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }}) 0%,
+      rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 | minus: 0.1 }}) 40%,
+      rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 | plus: 0.1 }}) 100%
+    );
+    z-index: 2;
   }
   
   .hero__content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     text-align: center;
-    color: #fff;
     padding: 2rem;
-    max-width: 80rem;
+    max-width: 90rem;
+  }
+  
+  .hero__text-wrapper {
+    color: #fff;
   }
   
   .hero__subheading {
-    font-size: 1.4rem;
-    letter-spacing: 0.2em;
+    font-size: 1.1rem;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     opacity: 0.9;
+    font-weight: 400;
   }
   
   .hero__heading {
     font-family: var(--font-heading-family);
-    font-size: clamp(3.6rem, 8vw, 7rem);
-    font-weight: 400;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
     line-height: 1.1;
-    margin: 0 0 2rem;
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.02em;
   }
   
-  .hero__text {
+  .hero__tagline {
     font-size: 1.8rem;
-    line-height: 1.6;
-    margin-bottom: 3rem;
-    opacity: 0.9;
-    max-width: 60rem;
-    margin-left: auto;
-    margin-right: auto;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 4rem;
+    font-style: italic;
   }
   
   .hero__button {
-    display: inline-block;
-    background: #fff;
-    color: #0a0a0a;
-    padding: 1.6rem 4rem;
-    font-size: 1.4rem;
-    letter-spacing: 0.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+    font-size: 1.3rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: all 0.3s ease;
+    padding: 1.5rem 3rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hero__button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
   }
   
   .hero__button:hover {
-    background: var(--color-accent);
+    color: #0a0a0a;
+    border-color: #fff;
+  }
+  
+  .hero__button:hover::before {
+    transform: translateY(0);
+  }
+  
+  .hero__button-line {
+    width: 30px;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.3s ease;
+  }
+  
+  .hero__button:hover .hero__button-line {
+    width: 40px;
+  }
+  
+  /* Scroll Indicator */
+  .hero__scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     color: #fff;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+  }
+  
+  .hero__mouse {
+    width: 26px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 13px;
+    position: relative;
+  }
+  
+  .hero__mouse-wheel {
+    width: 4px;
+    height: 8px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 2s infinite;
+  }
+  
+  @keyframes scrollWheel {
+    0%, 100% { opacity: 1; top: 8px; }
+    50% { opacity: 0.3; top: 20px; }
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+  
+  /* Animations */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  .delay-1 { animation-delay: 0.2s; }
+  .delay-2 { animation-delay: 0.4s; }
+  .delay-3 { animation-delay: 0.6s; }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Mobile Video Fix */
+  @media (max-width: 749px) {
+    .hero__video {
+      object-position: center;
+    }
   }
 </style>
 
@@ -125,9 +292,57 @@
   "name": "Hero",
   "settings": [
     {
+      "type": "header",
+      "content": "Video Background"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video URL (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"],
+      "info": "Paste YouTube or Vimeo URL for video background"
+    },
+    {
+      "type": "text",
+      "id": "video_mp4",
+      "label": "MP4 Video URL",
+      "info": "Direct link to MP4 file (recommended for best performance)"
+    },
+    {
+      "type": "text",
+      "id": "video_webm",
+      "label": "WebM Video URL (Optional)",
+      "info": "WebM format for better browser support"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster",
+      "label": "Video Poster Image",
+      "info": "Shown while video loads or on mobile"
+    },
+    {
+      "type": "header",
+      "content": "OR Image Background"
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Background Image"
+      "label": "Background Image",
+      "info": "Used if no video is set"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 30,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Content"
     },
     {
       "type": "text",
@@ -139,19 +354,19 @@
       "type": "text",
       "id": "heading",
       "label": "Heading",
-      "default": "Élégance intemporelle pour femmes & hommes"
+      "default": "L'élégance sans effort"
     },
     {
-      "type": "richtext",
-      "id": "text",
-      "label": "Text",
-      "default": "<p>Découvrez notre sélection de pièces intemporelles, conçues pour durer et pour séduire.</p>"
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Des essentiels modernes pour un style affirmé"
     },
     {
       "type": "text",
       "id": "button_label",
       "label": "Button Label",
-      "default": "Découvrir la collection"
+      "default": "Découvrir"
     },
     {
       "type": "url",

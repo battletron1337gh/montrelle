@@ -1,0 +1,205 @@
+{% comment %}
+  Features Section - Trust badges
+  Delivery, Payment, Returns
+{% endcomment %}
+
+<section class="features-section" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="features-grid">
+      {%- for block in section.blocks -%}
+        <div class="feature-item" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 150 }}" {{ block.shopify_attributes }}>
+          <div class="feature-icon">
+            {%- case block.settings.icon -%}
+              {%- when 'shipping' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M8 36h32M12 36V20h24v16M32 36v-8h8v8M8 28h-2a4 4 0 00-4 4v4a4 4 0 004 4h2"/>
+                  <circle cx="16" cy="36" r="3"/>
+                  <circle cx="36" cy="36" r="3"/>
+                </svg>
+              {%- when 'payment' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="12" width="40" height="24" rx="4"/>
+                  <path d="M4 20h40M12 28h8"/>
+                </svg>
+              {%- when 'returns' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 24c0-8 6-14 14-14s14 6 14 14-6 14-14 14"/>
+                  <path d="M12 24H4l4-4M4 24l4 4"/>
+                  <circle cx="26" cy="24" r="6"/>
+                </svg>
+              {%- when 'support' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M24 44c11 0 20-9 20-20S35 4 24 4 4 13 4 24s9 20 20 20z"/>
+                  <path d="M24 32v-4M24 16v8"/>
+                </svg>
+              {%- when 'quality' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M24 4l4 8 8 2-6 6 2 8-8-4-8 4 2-8-6-6 8-2z"/>
+                </svg>
+            {%- endcase -%}
+          </div>
+          <h3 class="feature-title">{{ block.settings.title | escape }}</h3>
+          <p class="feature-text">{{ block.settings.text | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .features-section {
+    padding: 6rem 0;
+    background: var(--color-background-dark, #f5f5f5);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  .page-width {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+  
+  .feature-item {
+    padding: 2rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-icon {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 2rem;
+    color: var(--color-text);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-item:hover .feature-icon {
+    color: var(--color-accent);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  
+  .feature-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .feature-title {
+    font-family: var(--font-heading-family);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+  }
+  
+  .feature-text {
+    font-size: 1.4rem;
+    opacity: 0.7;
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  /* Scroll animations */
+  [data-aos="fade-up"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  [data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Features",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shipping", "label": "Shipping" },
+            { "value": "payment", "label": "Payment" },
+            { "value": "returns", "label": "Returns" },
+            { "value": "support", "label": "Support" },
+            { "value": "quality", "label": "Quality" }
+          ],
+          "default": "shipping"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Livraison Gratuite"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "En France dès 50€ d'achat"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "shipping",
+            "title": "Livraison Gratuite",
+            "text": "En France dès 50€ d'achat"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "payment",
+            "title": "Paiement 100% Sécurisé",
+            "text": "Vos données sont protégées"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "returns",
+            "title": "Retour Facile",
+            "text": "30 jours pour changer d'avis"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

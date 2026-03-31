@@ -1,113 +1,11 @@
-<!-- Homepage Template -->
+<!-- Homepage Template - Maison Fierce Style -->
 
 {% section 'hero' %}
 
 {% section 'featured-collection' %}
 
-<section class="features-section">
-  <div class="page-width">
-    <div class="features-grid">
-      <div class="feature-item">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/>
-        </svg>
-        <h3>Livraison gratuite</h3>
-        <p>En France dès 50€ d'achat</p>
-      </div>
-      <div class="feature-item">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-        </svg>
-        <h3>Retour facile</h3>
-        <p>30 jours pour changer d'avis</p>
-      </div>
-      <div class="feature-item">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>
-        </svg>
-        <h3>Paiement sécurisé</h3>
-        <p>100% sécurisé par SSL</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 {% section 'featured-collection' %}
 
-<section class="newsletter-section">
-  <div class="page-width">
-    <div class="newsletter-content">
-      <h2>Rejoignez l'univers Noir & Blanc</h2>
-      <p>Inscrivez-vous pour recevoir nos nouveautés et offres exclusives</p>
-      {%- form 'customer', id: 'newsletter-form' -%}
-        <input type="email" name="contact[email]" placeholder="Votre email" required>
-        <button type="submit">S'inscrire</button>
-      {%- endform -%}
-    </div>
-  </div>
-</section>
+{% section 'universe' %}
 
-<style>
-  .features-section {
-    padding: 6rem 0;
-    background: #f9f9f9;
-  }
-  
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
-    text-align: center;
-  }
-  
-  .feature-item svg {
-    margin-bottom: 1.5rem;
-  }
-  
-  .feature-item h3 {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .feature-item p {
-    opacity: 0.7;
-  }
-  
-  .newsletter-section {
-    padding: 8rem 0;
-    text-align: center;
-    background: var(--color-primary);
-    color: var(--color-primary-light);
-  }
-  
-  .newsletter-content h2 {
-    font-family: var(--font-heading-family);
-    font-size: 3.6rem;
-    margin-bottom: 1rem;
-  }
-  
-  .newsletter-content form {
-    display: flex;
-    gap: 1rem;
-    max-width: 50rem;
-    margin: 3rem auto 0;
-  }
-  
-  .newsletter-content input {
-    flex: 1;
-    padding: 1.5rem;
-    border: none;
-    font-size: 1.6rem;
-  }
-  
-  .newsletter-content button {
-    padding: 1.5rem 3rem;
-    background: var(--color-accent);
-    color: #fff;
-    border: none;
-    font-size: 1.4rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-</style>
+{% section 'features' %}
